@@ -1,0 +1,70 @@
+/*
+
+    DeepBlue Starter Kit - version 1.1
+    Copyright (c) 2015 INMAGIK SRL - www.inmagik.com
+    All rights reserved
+
+    written by Mauro Bianchi
+    bianchimro@gmail.com  
+  
+    file: mixes.scss
+    description: various mixins for gradient backgrounds
+*/
+
+@mixin gradient-bg($color, $sat:15%, $l:10%){
+  background: -webkit-linear-gradient(90deg, saturate($color, $sat) 30%, lighten($color, $l) 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, saturate($color, $sat) 30%, lighten($color, $l) 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, saturate($color, $sat) 30%, lighten($color, $l) 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, saturate($color, $sat) 30%, lighten($color, $l) 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, saturate($color, $sat) 30%, lighten($color, $l) 90%); /* W3C */
+} 
+
+@mixin stable-bg(){
+    @include gradient-bg($stable);
+}   
+
+@mixin calm-bg(){
+    @include gradient-bg($calm, 30%);
+}
+
+@mixin positive-bg(){
+    @include gradient-bg($positive, 30%);
+}
+
+@mixin balanced-bg(){
+    @include gradient-bg($balanced);
+}
+
+@mixin assertive-bg(){
+    @include gradient-bg($assertive, 25%);
+}
+
+@mixin energized-bg(){
+ @include gradient-bg($energized); 
+}
+
+@mixin royal-bg(){
+ @include gradient-bg($royal); 
+}
+
+@mixin dark-bg(){
+ @include gradient-bg($dark); 
+  
+}
+
+@mixin ui-gradient-deepblue() {
+  background: -webkit-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);
+  background: -moz-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);
+  background: -ms-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);
+  background: -o-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);
+  background: linear-gradient(90deg, #00c6ff 10%, #0072ff 90%); 
+}
+
+@mixin ui-gradient-deepblue-reverse() {
+  background: -webkit-linear-gradient(90deg, #0072ff 10%, #00c6ff 90%);
+  background: -moz-linear-gradient(90deg, #0072ff 10%, #00c6ff 90%);
+  background: -ms-linear-gradient(90deg, #0072ff 10%, #00c6ff 90%);
+  background: -o-linear-gradient(90deg, #0072ff 10%, #00c6ff 90%);
+  background: linear-gradient(90deg, #0072ff 10%, #00c6ff 90%); 
+}
+

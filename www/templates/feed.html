@@ -1,0 +1,71 @@
+<ion-view view-title="Feed" hide-back-button="true">
+  <ion-content>
+    <!-- here we use a ion-refresher -->
+    <!--
+      #SIMPLIFIED-IMPLEMENTATION:
+      in our example refresh will do nothing as the data is fixed.
+      The ui interaction works anyway!
+      #IMPLEMENTATION-DETAIL:
+      ion-refreshed is styled with our custom classes in "scss/themed.scss".
+    -->
+    <ion-refresher
+      pulling-text="LOADING"
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <!-- this message is shown in case of no feeds present -->
+    <div class="text-center" style="padding-top:40px;" ng-if="!feeds.length">
+      <h1 class="sans-pro-light">No feeds</h1>
+      <h4 class="sans-pro-light">Pull to refresh</h4>
+      <h2 class="ion-ios-arrow-thin-down"></h2>
+    </div>
+    
+    <!-- cycling in feeds -->
+    <!--
+        #SIMPLIFIED-IMPLEMENTATION:
+        In this case we are using ng-repeat which is suitable
+        for showing a small number of items in a list.
+        In case of very long lists we recommend using "collection-repeat"
+        directive that ships with ionic.
+        Be aware that in that case your elements will have to be all the same height or you will have to provide a method to calculate each item height (and/or weight).
+        see more here: http://ionicframework.com/docs/api/directive/collectionRepeat/
+    -->
+    <div ng-repeat="feed in feeds">
+      
+      <div class="item item-avatar item-button-right">
+        <img src="sampledata/images/avatar.jpg">
+        <h2>{{feed.title}}</h2>
+        <p>{{feed.date}}</p>
+      </div>
+
+      <div class="item item-image">
+        <img ng-src="{{feed.image}}">
+      </div>
+
+      <div class="item item-text-wrap">
+        <p>
+          {{feed.description}}
+        </p>
+      </div>
+      <div class="item">
+        <p>
+          <a href="#" class="subdued">1 Like</a>
+          <a href="#" class="subdued">5 Comments</a>
+        </p>
+      </div>
+
+      <!-- comment and like buttons do nothing in this example -->
+      <div class="item tabs tabs-deepblue tabs-icon-left">
+        <a class="tab-item" href="#">
+          <i class="icon ion-thumbsup"></i>
+          Like
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-chatbox"></i>
+          Comment
+        </a>
+      </div>
+    </div>
+  
+  </ion-content>
+</ion-view>

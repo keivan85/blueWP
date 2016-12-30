@@ -1,0 +1,47 @@
+/*
+
+  DeepBlue Starter Kit
+  version 1.1
+  Copyright (c) 2015 INMAGIK SRL - www.inmagik.com
+  All rights reserved
+
+  written by Mauro Bianchi
+  bianchimro@gmail.com  
+
+  file: ionic.app.scss
+  description: main scss file
+  
+*/
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+
+
+//extra colors references (grays)
+$extradark: #222;
+$darkbg : #333;
+$lessdark: #555;
+$lighter: #eee;
+$light: #ffffff;
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+//These are custom styles
+
+@import "mixes";
+@import "scaffolding";
+@import "themed";
+@import "views";
+
+

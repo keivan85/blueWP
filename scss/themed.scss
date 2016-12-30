@@ -1,0 +1,115 @@
+/*
+
+    DeepBlue Starter Kit - version 1.1
+    Copyright (c) 2015 INMAGIK SRL - www.inmagik.com
+    All rights reserved
+
+    written by Mauro Bianchi
+    bianchimro@gmail.com  
+
+    file: themed.scss
+    description: theme classes
+*/
+
+// Wrapping everything inside a class that can be used on body 
+// or other containers
+
+.deepblue-theme {
+
+  // typefaces
+  color: $light;
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: $light;
+  }
+  
+  .pane, .view {
+    @include ui-gradient-deepblue();
+  }
+
+  // side menu
+  .menu {
+
+    @include ui-gradient-deepblue-reverse();
+    border-color: rgba($lighter, 0.80);
+    border-right: solid white 1px;
+
+    .item,
+    .item-complex .item-content {
+      @include ui-gradient-deepblue-reverse();
+      color: $light;
+      border-color: rgba($lighter, 0.80);
+      * {
+        color: $lighter;
+      }
+    }
+
+    .item-menu-avatar .item-content{
+      padding:5px;
+    }
+
+    .menu-positive .item-content, {
+      background: $positive !important;
+    }
+
+    .item:first-child,
+    .item-complex:first-child 
+    .item-content:first-child { 
+      border-top:none;
+    }
+  }
+
+  // BARS
+  .bar.bar-deepblue {
+    @include ui-gradient-deepblue();
+  }
+
+  .bar.bar-deepblue-reverse {
+    @include ui-gradient-deepblue-reverse();
+  }
+
+  .bar.bar-deepblue-bordertop {
+    border-top:solid rgba($lighter, 0.80) 1px;
+  }
+
+  .bar.bar-deepblue-borderbottom {
+    border-bottom:solid rgba($lighter, 0.80) 1px;
+  }
+
+  // A custom button to be used with button-outline
+  .button.button-outline.button-deepblue-white {
+    color:$light;
+    border-color:$light;
+  }
+
+  // Tabs (new class)
+  .tabs-deepblue > .tabs,
+  .tabs.tabs-deepblue {
+    @include ui-gradient-deepblue();
+    color:$light;
+  }
+
+  //Lists and Items
+  .item,
+  .item-complex .item-content {
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    //font-family: 'NotoSans', sans-serif !important;
+    color: $dark;
+    }
+  }
+
+  // ion-refresher
+  .scroll-refresher .ionic-refresher-content {
+    color:$light;
+  }
+
+  .scroll-refresher {
+    color:$light;
+    background: $energized;
+  }
+
+  .scroll-refresher  .ionic-refresher-content .spinner {
+    stroke:$light;
+    fill:$light;
+  }
+  
+}

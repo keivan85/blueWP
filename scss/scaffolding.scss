@@ -1,0 +1,86 @@
+/*
+
+    DeepBlue Starter Kit - version 1.1
+    Copyright (c) 2015 INMAGIK SRL - www.inmagik.com
+    All rights reserved
+
+    written by Mauro Bianchi
+    bianchimro@gmail.com  
+  
+    file: scaffolding.scss
+    description:Generic helpers used in templates
+
+*/
+
+// this one centers with flex
+.flex-center{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+// this one is meant to be applied to "ion-content" element and center scroll contents with flex
+
+.flex-center-content > .scroll{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+// full-height is meant bo be used on "ion-content" element and assures that element has at least the height of its container 
+.full-height > .scroll{
+    min-height:100%;
+}    
+
+.pointer{
+  cursor:pointer;
+}
+
+.white-color{
+    color: white !important;
+}
+
+.black-color{
+    color: black !important;
+}
+
+.sans-pro-light{
+    font-family: 'Source Sans Pro', sans-serif !important;
+    font-weight: 300;
+}
+
+
+// this is the main gradient used around in DeepBlue kit
+.ui-gradient-deepblue{
+  @include ui-gradient-deepblue();
+}
+
+.positive-bg {
+    @include positive-bg();
+}
