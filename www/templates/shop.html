@@ -1,4 +1,4 @@
-<ion-view view-title="Shop" hide-back-button="true">
+<ion-view view-title="" hide-back-button="true">
 
     <ion-nav-buttons side="right">
     <span ui-sref="app.cart" >
@@ -11,26 +11,22 @@
 
   <ion-content>
 
-    <div ng-repeat="product in products">
-  
-      <div class="item item-image" style="position:relative;">
-        <img ng-src="{{product.image}}">
-        <button class="button button-positive product-price" ng-click="addProduct(product)">
-            <p class="white-color product-price-price">$ <b>{{product.price}}</b></p>
-            <p class="white-color product-price-text">
-                <i class="ion-android-cart"></i> <span>Buy now</span>
-            </p>  
-        </button> 
-    
-      </div>
+    <div ng-repeat = "product in products">
+        <div class="item item-image" style="position:relative;">
+          <img ng-src="{{product.image}}">
+              <button class="button button-positive product-price text-right" ng-click="addProduct(product)">
+                  <p class="white-color product-price-price">{{product.categoryObj.count}}</p>
+                  <p class="white-color product-price-price"> پست</p>
+              </button>
+        </div>
 
-      <div class="item ui-gradient-deepblue">
-        <h1 class="title white-color sans-pro-light">{{product.title}}</h1>
-      </div>
+        <div class="item ui-gradient-deepblue text-right">
+          <h2 class="title white-color sans-pro-light">{{product.categoryObj.name}}</h2>
+        </div>
 
-      <div class="item item-body">
-        {{product.description}}
-      </div>
+        <div class="item item-body text-right">
+          {{product.categoryObj.description}}
+        </div>
     </div>
 
     
