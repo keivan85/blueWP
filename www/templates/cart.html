@@ -1,22 +1,23 @@
-<ion-view view-title="Shopping cart" hide-back-button="true">
+<ion-view view-title="" hide-back-button="true">
 
-  <ion-nav-buttons side="right">
-    <button class="button button-positive" ui-sref="app.shop">TO SHOP</button>
+  <ion-nav-buttons side="left">
+      <button class="button button-clear ion-heart white-color" ui-sref="app.shop">
+      </button>
   </ion-nav-buttons>
   
   <!-- we use a subheader component to show total and links to checkout and shop-->
-  <div class="bar bar-subheader bar-positive white-color">
+  <!--<div class="bar bar-subheader bar-positive white-color">
     
     <h4 class="title">{{cart.products.length }} items ({{getTotal(cart)}} $)</h4>
     
-  </div>     
+  </div>-->     
   
   <ion-content class="has-header has-subheader has-footer">
-    <div class="item item-divider" ng-if="cart.products.length">Swipe to remove items</div>
+    <!--<div class="item item-divider" ng-if="cart.products.length">Swipe to remove items</div>
     <div class="text-center" style="padding-top:40px;" ng-if="!cart.products.length">
       <h2 class="sans-pro-light">Your cart is empty</h2>
       <div class="button button-outline button-energized button-deepblue-white" ui-sref="app.shop">Back to shop</div>  
-    </div>
+    </div>-->
     
     <!-- 
       #IMPLEMENTATION-DETAIL:

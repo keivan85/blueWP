@@ -80,26 +80,46 @@ angular.module('deepBlue.controllers', [])
 })
 
 // Shop controller.
-.controller('ShopCtrl', function($scope, $ionicActionSheet, BackendService, CartService) {
+.controller('ShopCtrl', function($scope, $ionicActionSheet, BackendService, CartService, $http, $sce ) {
   
-  // In this example feeds are loaded from a json file.
-  // (using "getProducts" method in BackendService, see services.js)
-  // In your application you can use the same approach or load 
-  // products from a web service.
-  
-  //using the CartService to load cart from localStorage
+
+  $scope.siteCategories = [];
   $scope.cart = CartService.loadCart();
 
   $scope.doRefresh = function(){
       BackendService.getProducts()
       .success(function(newItems) {
         $scope.products = newItems;
+       // console.log($scope.products);
+        $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/categories/").then(
+        function(returnedData){
+          $scope.siteCategories = returnedData.data;
+          console.log($scope.siteCategories);
+          $scope.products.forEach(function(item1) {
+            item1.categoryObj = $scope.siteCategories.find(function(item2) {
+              return item2.name === item1.title;
+            });
+          });
+
+          /*console.log($scope.siteCategories);
+          $scope.siteCategories.forEach(function(index) {
+
+              $scope.products.forEach((val) =>{val['count'] = index.count; val['name'] = index.name})
+
+            console.log($scope.products);
+          })*/
+        }, function(err){
+          console.log(err);
+        })
       })
       .finally(function() {
         // Stop the ion-refresher from spinning (not needed in this view)
         $scope.$broadcast('scroll.refreshComplete');
       });
   };
+
+
+
 
   // private method to add a product to cart
   var addProductToCart = function(product){
@@ -127,6 +147,8 @@ angular.module('deepBlue.controllers', [])
        }
      });
   };
+
+
 
   //trigger initial refresh of products
   $scope.doRefresh();

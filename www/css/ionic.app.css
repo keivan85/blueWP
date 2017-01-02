@@ -5086,6 +5086,7 @@ a.item-content {
     vertical-align: middle; }
 
 .item-body {
+  float: right;
   overflow: auto;
   padding: 16px;
   text-overflow: inherit;
@@ -7902,7 +7903,7 @@ a.button {
   border-radius: 100%; }
 
 .product-price-price {
-  font-size: 2em !important;
+  font-size: 1.5em !important;
   margin-top: 8px; }
 
 .product-price-text {
