@@ -14,7 +14,7 @@
     <div ng-repeat = "product in products">
         <div class="item item-image" style="position:relative;">
           <img ng-src="{{product.image}}">
-              <button class="button button-positive product-price text-right" ng-click="addProduct(product)">
+              <button class="button button-positive product-price text-right" ui-sref="app.cart">
                   <p class="white-color product-price-price">{{product.categoryObj.count}}</p>
                   <p class="white-color product-price-price"> پست</p>
               </button>
