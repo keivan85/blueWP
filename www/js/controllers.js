@@ -55,27 +55,26 @@ angular.module('deepBlue.controllers', [])
 
 
 // Feeds controller.
-.controller('FeedsCtrl', function($scope, BackendService) {
+.controller('FeedsCtrl', function($scope, $http, $sce) {
 
-  // #SIMPLIFIED-IMPLEMENTATION:
-  // In this example feeds are loaded from a json file.
-  // (using "getFeeds" method in BackendService, see services.js)
-  // In your application you can use the same approach or load 
-  // feeds from a web service.
-  
-  $scope.doRefresh = function(){
-      BackendService.getFeeds()
-      .success(function(newItems) {
-        $scope.feeds = newItems;
-      })
-      .finally(function() {
-        // Stop the ion-refresher from spinning
-        $scope.$broadcast('scroll.refreshComplete');
-      });
-  };
+    $scope.postPages = [];
 
-  // Triggering the first refresh
-  $scope.doRefresh();
+    $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts").then(
+      function(returnedData){
+        $scope.postPages = returnedData.data;
+        console.log($scope.postPages);
+        $scope.postPages.forEach(function(element, index, array) {
+          element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
+          element.title.rendered = $sce.trustAsHtml(element.title.rendered);
+        })
+   
+    }, function(err){
+      console.log(err);
+    })
+
+    $scope.searchTextChanged = function() {
+      $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop(true);
+    };
 
 })
 
@@ -94,20 +93,11 @@ angular.module('deepBlue.controllers', [])
         $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/categories/").then(
         function(returnedData){
           $scope.siteCategories = returnedData.data;
-          console.log($scope.siteCategories);
           $scope.products.forEach(function(item1) {
             item1.categoryObj = $scope.siteCategories.find(function(item2) {
               return item2.name === item1.title;
             });
           });
-
-          /*console.log($scope.siteCategories);
-          $scope.siteCategories.forEach(function(index) {
-
-              $scope.products.forEach((val) =>{val['count'] = index.count; val['name'] = index.name})
-
-            console.log($scope.products);
-          })*/
         }, function(err){
           console.log(err);
         })
@@ -156,8 +146,54 @@ angular.module('deepBlue.controllers', [])
 })
 
 // controller for "app.cart" view
-.controller('CartCtrl', function($scope, CartService, $ionicListDelegate) {
+.controller('CartCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate) {
   
+  $scope.doRefresh = function(){
+    $scope.recentPosts = [];
+
+    $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?per_page=50").then(
+      function(returnedData){
+        $scope.recentPosts = returnedData.data;
+        //console.log($scope.recentPosts);
+        $scope.recentPosts.forEach(function(element, index, array) {
+          element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
+          element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
+          element.title.rendered = $sce.trustAsHtml(element.title.rendered);
+        })
+   
+    }, function(err){
+      console.log(err);
+    })
+
+    
+    .finally(function() {
+      // Stop the ion-refresher from spinning
+      $scope.$broadcast('scroll.refreshComplete');
+    });
+  };
+  $scope.recentPosts = [];
+
+  $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?per_page=50").then(
+    function(returnedData){
+      $scope.recentPosts = returnedData.data;
+      console.log($scope.recentPosts);
+      $scope.recentPosts.forEach(function(element, index, array) {
+        element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
+        element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
+        element.title.rendered = $sce.trustAsHtml(element.title.rendered);
+      })
+ 
+  }, function(err){
+    console.log(err);
+  })
+
+  $scope.searchTextChanged = function() {
+    $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop(true);
+  };
+
+
+
+
   // using the CartService to load cart from localStorage
   $scope.cart = CartService.loadCart();
   

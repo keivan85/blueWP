@@ -1,17 +1,11 @@
 <ion-view view-title="" hide-back-button="true">
 
-    <ion-nav-buttons side="right">
-    <span ui-sref="app.cart" >
-      <button class="button button-clear icon ion-android-cart white-color">
-        
-      </button>
-      <span ng-show="cart.products.length" class="cart-badge ng-hide">{{cart.products.length}}</span>
-    </span>
-    </ion-nav-buttons>
-
   <ion-content>
+    <ion-refresher
+      pulling-text="به روز رسانی دسته بندی ها" on-refresh="doRefresh()">
+    </ion-refresher>
 
-    <div ng-repeat = "product in products">
+    <div ng-repeat = "product in products" dir="rtl">
         <div class="item item-image" style="position:relative;">
           <img ng-src="{{product.image}}">
               <button class="button button-positive product-price text-right" ui-sref="app.cart">
@@ -21,12 +15,12 @@
         </div>
 
         <div class="item ui-gradient-deepblue text-right">
-          <h2 class="title white-color sans-pro-light">{{product.categoryObj.name}}</h2>
+          <h2 class="title white-color sans-pro-light">{{product.title}}</h2>
         </div>
 
-        <div class="item item-body text-right">
-          {{product.categoryObj.description}}
-        </div>
+        <!--<div class="item item-body text-right">
+          {{product.description}}
+        </div>-->
     </div>
 
     
