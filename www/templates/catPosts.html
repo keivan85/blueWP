@@ -18,16 +18,21 @@
       pulling-text="به روز رسانی مطالب" on-refresh="doRefresh()">
     </ion-refresher>
 
-    <ion-list>  
-      <ion-item class="item item-avatar item-text-wrap" ng-repeat="post in recentPosts | filter: searchText" ng-href="#/app/cat_posts/{{post.id}}">
+    <ion-list ng-repeat="post in recentPosts | filter: searchText">  
+      <ion-item class="item item-avatar item-text-wrap" ng-href="#/app/catPosts/{{post.id}}">
 
         <img ng-src="{{post.better_featured_image.source_url}}" alt="All fashion post image">
         <h2 class="title white-cxolor text-right" ng-bind-html="post.title.rendered" dir="rtl"></h2>
         <p class="text-right" ng-bind-html = "post.excerpt.rendered" dir="rtl"></p>
         <p class="text-right"> ... </p>
-        <button class="button button-clear ion-android-share"></button>
-        <button class="button button-clear ion-heart"></button>
+
+      </ion-item>
       
+      <ion-item dir="rtl">
+
+        <button class="button-clear ion-android-share"> باز نشر</button>
+        <button class="button-clear ion-heart" ng-click="toggleFavorite(post)"> پسندیدن</button>
+
       </ion-item>
     </ion-list>
 

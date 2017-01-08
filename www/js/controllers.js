@@ -74,7 +74,7 @@ angular.module('deepBlue.controllers', [])
   
 
   $scope.siteCategories = [];
-  $scope.cat_posts = CartService.loadCart();
+  $scope.catPosts = CartService.loadCart();
 
   $scope.doRefresh = function(){
       BackendService.getProducts()
@@ -84,6 +84,7 @@ angular.module('deepBlue.controllers', [])
         $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/categories/").then(
         function(returnedData){
           $scope.siteCategories = returnedData.data;
+          console.log($scope.siteCategories);
           $scope.products.forEach(function(item1) {
             item1.categoryObj = $scope.siteCategories.find(function(item2) {
               return item2.name === item1.title;
@@ -102,17 +103,17 @@ angular.module('deepBlue.controllers', [])
 
 
 
-  // private method to add a product to cat_posts
+  // private method to add a product to catPosts
   var addProductToCart = function(product){
-    $scope.cat_posts.products.push(product);
-    CartService.saveCart($scope.cat_posts);
+    $scope.catPosts.products.push(product);
+    CartService.saveCart($scope.catPosts);
   };
 
-  // method to add a product to cat_posts via $ionicActionSheet
+  // method to add a product to catPosts via $ionicActionSheet
   $scope.addProduct = function(product){
     $ionicActionSheet.show({
        buttons: [
-         { text: '<b>Add to cat_posts</b>' }
+         { text: '<b>Add to catPosts</b>' }
        ],
        titleText: 'Buy ' + product.title,
        cancelText: 'Cancel',
@@ -128,7 +129,7 @@ angular.module('deepBlue.controllers', [])
        }
      });
   };
-
+ 
 
 
   //trigger initial refresh of products
@@ -136,13 +137,81 @@ angular.module('deepBlue.controllers', [])
 
 })
 
-// controller for "app.cart" view
-.controller('cat_postsCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate) {
+
+
+// controller for "app.catContent" view
+.controller('catContentCtrl', function($scope, $sce, $http, $stateParams, $ionicListDelegate, $ionicScrollDelegate) {
+    
+  $scope.doRefresh = function() {
+    $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?categories=" + $stateParams.catId).then(
+      function(returnedData){
+        $scope.category_posts = returnedData.data;
+        console.log($scope.category_posts);
+        $scope.category_posts.forEach(function(element, index, array) {
+          element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
+          element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
+          element.title.rendered = $sce.trustAsHtml(element.title.rendered);
+        })
+   
+    }, function(err){
+      console.log(err);
+    })
+
+    
+    .finally(function() {
+      // Stop the ion-refresher from spinning
+      $scope.$broadcast('scroll.refreshComplete');
+    });
+  };
+
+   if(!$scope.Favorites) {
+    $scope.Favorites = [];
+  }
+  $scope.toggleFavorite = function(post) {
+    if(post.isFavorite == true) {
+      $scope.Favorites.push(post.id);
+    } else {
+      $scope.Favorites.forEach(function(element, index, array) {
+        if (element == post.id) {
+          $scope.Favorites.splice(index, 1);
+          console.log("Spliced index "+ index);
+        }
+      })
+    }
+  }
+  
+  $scope.recentPosts = [];
+  $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?categories=" + $stateParams.catId).then(
+    function(returnedData){
+      $scope.category_posts = returnedData.data;
+      console.log($scope.category_posts);
+      $scope.category_posts.forEach(function(element, index, array) {
+        element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
+        element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
+        element.title.rendered = $sce.trustAsHtml(element.title.rendered);
+      })
+   
+    }, function(err){
+      console.log(err);
+    })
+
+    
+    .finally(function() {
+      // Stop the ion-refresher from spinning
+      $scope.$broadcast('scroll.refreshComplete');
+    });
+  $scope.searchTextChanged = function() {
+    $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop(true);
+  };
+})
+
+// controller for "app.catPosts" view
+.controller('catPostsCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate) {
   
   $scope.doRefresh = function(){
     $scope.recentPosts = [];
 
-    $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?per_page=50").then(
+    $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?per_page=15").then(
       function(returnedData){
         $scope.recentPosts = returnedData.data;
         console.log($scope.recentPosts);
@@ -164,7 +233,7 @@ angular.module('deepBlue.controllers', [])
   };
   $scope.recentPosts = [];
 
-  $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?per_page=50").then(
+  $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?per_page=15").then(
     function(returnedData){
       $scope.recentPosts = returnedData.data;
       //console.log($scope.recentPosts);
@@ -186,16 +255,16 @@ angular.module('deepBlue.controllers', [])
 
 
   // using the CartService to load cart from localStorage
-  $scope.cat_posts = CartService.loadCart();
+  $scope.catPosts = CartService.loadCart();
   
   // we assign getTotal method of CartService to $scope to have it available
   // in our template
   $scope.getTotal = CartService.getTotal;
 
-  // removes product from cat_posts (making in persistent)
+  // removes product from catPosts (making in persistent)
   $scope.dropProduct = function($index){
-    $scope.cat_posts.products.splice($index, 1);
-    CartService.saveCart($scope.cat_posts);
+    $scope.catPosts.products.splice($index, 1);
+    CartService.saveCart($scope.catPosts);
     // as this method is triggered in an <ion-option-button> 
     // we close the list after that (not strictly needed)
     $ionicListDelegate.closeOptionButtons();
@@ -206,7 +275,7 @@ angular.module('deepBlue.controllers', [])
 .controller('CheckoutCtrl', function($scope, CartService, $state) {
   
   //using the CartService to load cart from localStorage
-  $scope.cat_posts = CartService.loadCart();
+  $scope.catPosts = CartService.loadCart();
   $scope.getTotal = CartService.getTotal;
 
   $scope.getTotal = CartService.getTotal;
@@ -216,7 +285,7 @@ angular.module('deepBlue.controllers', [])
   // after that the cart is reset and user is redirected to main
   $scope.checkout = function(){
     alert("this implementation is up to you!");
-    $scope.cat_posts = CartService.resetCart();
+    $scope.catPosts = CartService.resetCart();
     $state.go('app.main')
   }
 

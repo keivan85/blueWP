@@ -52,7 +52,7 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
 
     Here we setup the views of our app.
     In this case:
-    - post, account, main, checkout, cat_posts will require login
+    - post, account, main, checkout, catPosts will require login
     - app will go to the "start view" when launched.
 
     #IMPLEMENTATION-DETAIL: views that require authorizations have an
@@ -109,27 +109,6 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
       }
   })
 
-  .state('app.cat_posts', {
-    url: '/cat_posts',
-    data : { auth : true },
-    cache : false,
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/cat_posts.html',
-        controller : 'cat_postsCtrl'
-      }
-    }
-  })
-  .state('app.post', {
-    url: "/cat_posts/:postId",
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/post.html',
-        controller : 'postCtrl'
-      }
-    }
-  })
-
   .state('app.main', {
     url: '/main',
     data : { auth : true },
@@ -141,6 +120,39 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
       }
     }
   })
+
+  .state('app.catContent', {
+    url: '/catContent/:catId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/catContent.html',
+        controller : 'catContentCtrl'
+      }
+    }
+  })
+
+  .state('app.catPosts', {
+    url: '/catPosts',
+    data : { auth : true },
+    cache : false,
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/catPosts.html',
+        controller : 'catPostsCtrl'
+      }
+    }
+  })
+  .state('app.post', {
+    url: "/catPosts/:postId",
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/post.html',
+        controller : 'postCtrl'
+      }
+    }
+  })
+
+
 
 
 
