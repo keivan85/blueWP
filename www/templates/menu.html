@@ -35,7 +35,7 @@
     <ion-header-bar class="bar-deepblue-reverse bar-deepblue-borderbottom">
     </ion-header-bar>
   
-    <ion-content>
+    <ion-content dir="rtl">
       <ion-list>
         <!-- #TIP: 
           Menu items are wrapped In the following <ion-list>. 
@@ -44,11 +44,11 @@
         <ion-item ng-show="user.avatar" menu-close href="#/app/account" class="item-menu-avatar text-center">
           <img ng-src="{{user.avatar}}" class="avatar-menu">
         </ion-item>
-        <!--<ion-item menu-close href="#/app/post">
-          post
-        </ion-item>-->
+        <ion-item menu-close href="#/app/catPosts">
+          جدیدترین پست ها
+        </ion-item>
         <ion-item menu-close href="#/app/main">
-          main
+          دسته بندی اصلی
         </ion-item>
 
       </ion-list>

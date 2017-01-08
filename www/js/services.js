@@ -16,36 +16,36 @@
 angular.module('deepBlue.services', [])
 
 // CartService is an example of service using localStorage 
-// to persist items of the cat_posts.
+// to persist items of the catPosts.
 .factory('CartService', [function () {
 
   var svc = {};
 
-  svc.saveCart = function(cat_posts){
-    window.localStorage.setItem('cat_posts', JSON.stringify(cat_posts));
+  svc.saveCart = function(catPosts){
+    window.localStorage.setItem('catPosts', JSON.stringify(catPosts));
   };
 
   svc.loadCart = function(){
-    var cat_posts = window.localStorage.getItem('cat_posts');
-    if(!cat_posts){
+    var catPosts = window.localStorage.getItem('catPosts');
+    if(!catPosts){
       return { products : [ ] }
     }
-    return JSON.parse(cat_posts);
+    return JSON.parse(catPosts);
   };
 
   svc.resetCart = function(){
-    var cat_posts =  { products : [ ] };
-    svc.saveCart(cat_posts);
-    return cat_posts;
+    var catPosts =  { products : [ ] };
+    svc.saveCart(catPosts);
+    return catPosts;
   };
 
-  svc.getTotal = function(cat_posts){
+  svc.getTotal = function(catPosts){
     var out = 0;
-    if(!cat_posts || !cat_posts.products || !angular.isArray(cat_posts.products)){
+    if(!catPosts || !catPosts.products || !angular.isArray(catPosts.products)){
       return out;
     }
-    for(var i=0; i < cat_posts.products.length; i++){
-      out += cat_posts.products[i].price;
+    for(var i=0; i < catPosts.products.length; i++){
+      out += catPosts.products[i].price;
     }
     return out;
   }
