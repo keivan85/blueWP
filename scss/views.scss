@@ -53,13 +53,3 @@
   margin:auto;
 }
 
-  .item-avatar > img:first-child, .item-avatar .item-image, .item-avatar .item-content > img:first-child, .item-avatar .item-content .item-image, .item-avatar-left > img:first-child, .item-avatar-left .item-image, .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-content .item-image {
-    position: absolute;
-    top: 26px !important;
-    left: 6px !important;
-    max-width: 64px !important;
-    max-height: 64px !important;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%; 
-  }

@@ -18,16 +18,15 @@
       pulling-text="به روز رسانی مطالب" on-refresh="doRefresh()">
     </ion-refresher>
 
-    <ion-list can-swipe="true">  
-      <ion-item class="item item-avatar item-text-wrap" ng-repeat="recentPost in recentPosts | filter: searchText" dir="rtl">
+    <ion-list>  
+      <ion-item class="item item-avatar item-text-wrap" ng-repeat="post in recentPosts | filter: searchText" ng-href="#/app/cart/{{post.id}}">
 
-        <img ng-src="{{recentPost.better_featured_image.source_url}}" alt="All fashion post image">
-        <h2 class="title white-cxolor text-right" ng-bind-html="recentPost.title.rendered"></h2>
-        <p class="text-right" ng-bind-html = "recentPost.excerpt.rendered"></p>
+        <img ng-src="{{post.better_featured_image.source_url}}" alt="All fashion post image">
+        <h2 class="title white-cxolor text-right" ng-bind-html="post.title.rendered" dir="rtl"></h2>
+        <p class="text-right" ng-bind-html = "post.excerpt.rendered" dir="rtl"></p>
         <p class="text-right"> ... </p>
-        <ion-option-button class="button-dark" ng-click="">
-          <i class="icon ion-heart"></i>
-        </ion-option-button>
+        <button class="button button-clear ion-android-share"></button>
+        <button class="button button-clear ion-heart"></button>
       
       </ion-item>
     </ion-list>

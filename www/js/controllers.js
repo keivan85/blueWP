@@ -23,6 +23,7 @@ angular.module('deepBlue.controllers', [])
   // Simplified handling and logout function.
   // A real app would delegate a service for organizing session data
   // and auth stuff in a better way.
+  
   $rootScope.user = {
     avatar : 'sampledata/images/avatar.jpg'
   };
@@ -55,26 +56,16 @@ angular.module('deepBlue.controllers', [])
 
 
 // Feeds controller.
-.controller('FeedsCtrl', function($scope, $http, $sce) {
-
-    $scope.postPages = [];
-
-    $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts").then(
+.controller('FeedsCtrl', function($scope, $http, $stateParams, $sce) {
+    $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId).then(
       function(returnedData){
-        $scope.postPages = returnedData.data;
-        console.log($scope.postPages);
-        $scope.postPages.forEach(function(element, index, array) {
-          element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
-          element.title.rendered = $sce.trustAsHtml(element.title.rendered);
-        })
-   
-    }, function(err){
-      console.log(err);
-    })
-
-    $scope.searchTextChanged = function() {
-      $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop(true);
-    };
+        $scope.postDetails = returnedData.data;
+        $scope.post_title = $sce.trustAsHtml($scope.postDetails.title.rendered);
+        $scope.post_content = $sce.trustAsHtml($scope.postDetails.content.rendered);
+        $scope.post_image = $scope.postDetails.better_featured_image.source_url;
+      }, function(err){
+        console.log(err);
+      })
 
 })
 
@@ -154,7 +145,7 @@ angular.module('deepBlue.controllers', [])
     $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?per_page=50").then(
       function(returnedData){
         $scope.recentPosts = returnedData.data;
-        //console.log($scope.recentPosts);
+        console.log($scope.recentPosts);
         $scope.recentPosts.forEach(function(element, index, array) {
           element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
           element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
@@ -176,7 +167,7 @@ angular.module('deepBlue.controllers', [])
   $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?per_page=50").then(
     function(returnedData){
       $scope.recentPosts = returnedData.data;
-      console.log($scope.recentPosts);
+      //console.log($scope.recentPosts);
       $scope.recentPosts.forEach(function(element, index, array) {
         element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
         element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
