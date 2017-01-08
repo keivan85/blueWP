@@ -52,7 +52,7 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
 
     Here we setup the views of our app.
     In this case:
-    - feed, account, shop, checkout, cart will require login
+    - post, account, main, checkout, cat_posts will require login
     - app will go to the "start view" when launched.
 
     #IMPLEMENTATION-DETAIL: views that require authorizations have an
@@ -109,35 +109,35 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
       }
   })
 
-  .state('app.cart', {
-    url: '/cart',
+  .state('app.cat_posts', {
+    url: '/cat_posts',
     data : { auth : true },
     cache : false,
     views: {
       'menuContent': {
-        templateUrl: 'templates/cart.html',
-        controller : 'CartCtrl'
+        templateUrl: 'templates/cat_posts.html',
+        controller : 'cat_postsCtrl'
       }
     }
   })
-  .state('app.feed', {
-    url: "/cart/:postId",
+  .state('app.post', {
+    url: "/cat_posts/:postId",
     views: {
       'menuContent': {
-        templateUrl: 'templates/feed.html',
-        controller : 'FeedsCtrl'
+        templateUrl: 'templates/post.html',
+        controller : 'postCtrl'
       }
     }
   })
 
-  .state('app.shop', {
-    url: '/shop',
+  .state('app.main', {
+    url: '/main',
     data : { auth : true },
     cache : false,
     views: {
       'menuContent': {
-        templateUrl: 'templates/shop.html',
-        controller : 'ShopCtrl'
+        templateUrl: 'templates/main.html',
+        controller : 'mainCtrl'
       }
     }
   })

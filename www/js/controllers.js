@@ -40,8 +40,8 @@ angular.module('deepBlue.controllers', [])
       zip  : "00007",
       avatar : 'sampledata/images/avatar.jpg'
     };
-    //finally, we route our app to the 'app.shop' view
-    $state.go('app.shop');
+    //finally, we route our app to the 'app.main' view
+    $state.go('app.main');
   };
 
   $scope.logout = function(){
@@ -55,8 +55,8 @@ angular.module('deepBlue.controllers', [])
 
 
 
-// Feeds controller.
-.controller('FeedsCtrl', function($scope, $http, $stateParams, $sce) {
+// post controller.
+.controller('postCtrl', function($scope, $http, $stateParams, $sce) {
     $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId).then(
       function(returnedData){
         $scope.postDetails = returnedData.data;
@@ -69,12 +69,12 @@ angular.module('deepBlue.controllers', [])
 
 })
 
-// Shop controller.
-.controller('ShopCtrl', function($scope, $ionicActionSheet, BackendService, CartService, $http, $sce ) {
+// main controller.
+.controller('mainCtrl', function($scope, $ionicActionSheet, BackendService, CartService, $http, $sce ) {
   
 
   $scope.siteCategories = [];
-  $scope.cart = CartService.loadCart();
+  $scope.cat_posts = CartService.loadCart();
 
   $scope.doRefresh = function(){
       BackendService.getProducts()
@@ -102,17 +102,17 @@ angular.module('deepBlue.controllers', [])
 
 
 
-  // private method to add a product to cart
+  // private method to add a product to cat_posts
   var addProductToCart = function(product){
-    $scope.cart.products.push(product);
-    CartService.saveCart($scope.cart);
+    $scope.cat_posts.products.push(product);
+    CartService.saveCart($scope.cat_posts);
   };
 
-  // method to add a product to cart via $ionicActionSheet
+  // method to add a product to cat_posts via $ionicActionSheet
   $scope.addProduct = function(product){
     $ionicActionSheet.show({
        buttons: [
-         { text: '<b>Add to cart</b>' }
+         { text: '<b>Add to cat_posts</b>' }
        ],
        titleText: 'Buy ' + product.title,
        cancelText: 'Cancel',
@@ -137,7 +137,7 @@ angular.module('deepBlue.controllers', [])
 })
 
 // controller for "app.cart" view
-.controller('CartCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate) {
+.controller('cat_postsCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate) {
   
   $scope.doRefresh = function(){
     $scope.recentPosts = [];
@@ -186,16 +186,16 @@ angular.module('deepBlue.controllers', [])
 
 
   // using the CartService to load cart from localStorage
-  $scope.cart = CartService.loadCart();
+  $scope.cat_posts = CartService.loadCart();
   
   // we assign getTotal method of CartService to $scope to have it available
   // in our template
   $scope.getTotal = CartService.getTotal;
 
-  // removes product from cart (making in persistent)
+  // removes product from cat_posts (making in persistent)
   $scope.dropProduct = function($index){
-    $scope.cart.products.splice($index, 1);
-    CartService.saveCart($scope.cart);
+    $scope.cat_posts.products.splice($index, 1);
+    CartService.saveCart($scope.cat_posts);
     // as this method is triggered in an <ion-option-button> 
     // we close the list after that (not strictly needed)
     $ionicListDelegate.closeOptionButtons();
@@ -206,18 +206,18 @@ angular.module('deepBlue.controllers', [])
 .controller('CheckoutCtrl', function($scope, CartService, $state) {
   
   //using the CartService to load cart from localStorage
-  $scope.cart = CartService.loadCart();
+  $scope.cat_posts = CartService.loadCart();
   $scope.getTotal = CartService.getTotal;
 
   $scope.getTotal = CartService.getTotal;
 
   // #NOT-IMPLEMENTED: This method is just calling alert()
   // you should implement this method to connect an ecommerce
-  // after that the cart is reset and user is redirected to shop
+  // after that the cart is reset and user is redirected to main
   $scope.checkout = function(){
     alert("this implementation is up to you!");
-    $scope.cart = CartService.resetCart();
-    $state.go('app.shop')
+    $scope.cat_posts = CartService.resetCart();
+    $state.go('app.main')
   }
 
 })

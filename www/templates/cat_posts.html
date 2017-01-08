@@ -1,11 +1,11 @@
 <ion-view view-title="" hide-back-button="true">
 
   <ion-nav-buttons side="left">
-      <button class="button button-clear ion-ios-arrow-back white-color" ui-sref="app.shop">
+      <button class="button button-clear ion-ios-arrow-back white-color" ui-sref="app.main">
       </button>
   </ion-nav-buttons>
   
-  <!-- we use a subheader component to show total and links to checkout and shop-->
+  <!-- we use a subheader component to show total and links to checkout and main-->
   <div class="bar bar-subheader item-input-inset" dir="rtl">
     <label class="item-input-inset">
       <i class="icon ion-ios-search placeholder-icon"></i>
@@ -19,7 +19,7 @@
     </ion-refresher>
 
     <ion-list>  
-      <ion-item class="item item-avatar item-text-wrap" ng-repeat="post in recentPosts | filter: searchText" ng-href="#/app/cart/{{post.id}}">
+      <ion-item class="item item-avatar item-text-wrap" ng-repeat="post in recentPosts | filter: searchText" ng-href="#/app/cat_posts/{{post.id}}">
 
         <img ng-src="{{post.better_featured_image.source_url}}" alt="All fashion post image">
         <h2 class="title white-cxolor text-right" ng-bind-html="post.title.rendered" dir="rtl"></h2>
