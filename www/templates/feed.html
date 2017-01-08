@@ -1,30 +1,33 @@
-<ion-view view-title="Feed" hide-back-button="true">
+<ion-view view-title="" hide-back-button="true">
+
+  <ion-nav-buttons side="left">
+      <button class="button button-clear ion-ios-arrow-back white-color" ui-sref="app.cart">
+      </button>
+  </ion-nav-buttons>
   <ion-content>
 
  
-    <div ng-repeat="postPage in postPages">
       
-      <div class="item item-avatar item-button-right" dir="rtl">
-        <img ng-src="{{postPage.better_featured_image.source_url}}">
-        <h2 class="text-right" ng-bind-html="postPage.title.rendered"></h2>
+      <div class="item item-avatar">
+        <img ng-src="{{post_image}}">
+        <div class="text-right item-text-wrap" ng-bind-html="post_title" dir="rtl"></div>
       </div>
 
       <div class="item item-image">
-        <img ng-src="{{postPage.better_featured_image.source_url}}">
+        <img ng-src="{{post_image}}">
       </div>
 
-      <div class="item item-text-wrap" dir="rtl">
-        <p class="text-right" ng-bind-html="postPage.excerpt.rendered"></p>
+      <div class="item" dir="rtl">
+        <p class="text-right item-text-wrap" ng-bind-html="post_content"></p>
       </div>
-      <div class="item">
+      <!--<div class="item">
         <p>
           <a href="#" class="subdued">1 Like</a>
           <a href="#" class="subdued">5 Comments</a>
         </p>
-      </div>
+      </div>-->
 
-      <!-- comment and like buttons do nothing in this example -->
-      <div class="item tabs tabs-deepblue tabs-icon-left">
+      <!--<div class="item tabs tabs-deepblue tabs-icon-left">
         <a class="tab-item" href="#">
           <i class="icon ion-thumbsup"></i>
           Like
@@ -33,8 +36,7 @@
           <i class="icon ion-chatbox"></i>
           Comment
         </a>
-      </div>
-    </div>
+      </div>-->
   
   </ion-content>
 </ion-view>

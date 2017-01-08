@@ -109,9 +109,19 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
       }
   })
 
-  .state('app.feed', {
-    url: '/feed',
+  .state('app.cart', {
+    url: '/cart',
     data : { auth : true },
+    cache : false,
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/cart.html',
+        controller : 'CartCtrl'
+      }
+    }
+  })
+  .state('app.feed', {
+    url: "/cart/:postId",
     views: {
       'menuContent': {
         templateUrl: 'templates/feed.html',
@@ -132,17 +142,7 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
     }
   })
 
-  .state('app.cart', {
-    url: '/cart',
-    data : { auth : true },
-    cache : false,
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/cart.html',
-        controller : 'CartCtrl'
-      }
-    }
-  })
+
 
   .state('app.checkout', {
     url: '/checkout',
