@@ -1,4 +1,4 @@
-<ion-view view-title="پست های پسندیده شده" hide-back-button="true">
+<ion-view class="text-center" view-title="پست های پسندیده شده" hide-back-button="true">
 
   <ion-nav-buttons side="left">
       <button class="button button-clear ion-ios-arrow-back white-color" ui-sref="app.main">
@@ -24,7 +24,6 @@
         <img ng-src="{{post.better_featured_image.source_url}}" alt="All fashion post image">
         <h2 class="title white-cxolor text-right" dir="rtl">{{post.title.rendered}}</h2>
         <p class="text-right" ng-bind-html = "post.excerpt.rendered" dir="rtl"></p>
-        <p class="text-right"> [...ادامه مطلب] </p>
       
       </ion-item>
 
