@@ -44,11 +44,14 @@
         <ion-item ng-show="user.avatar" menu-close href="#/app/account" class="item-menu-avatar text-center">
           <img ng-src="{{user.avatar}}" class="avatar-menu">
         </ion-item>
+        <ion-item menu-close href="#/app/main">
+          دسته بندی اصلی
+        </ion-item>
         <ion-item menu-close href="#/app/catPosts">
           جدیدترین پست ها
         </ion-item>
-        <ion-item menu-close href="#/app/main">
-          دسته بندی اصلی
+        <ion-item menu-close href="#/app/">
+          مطالب پسندیده شده
         </ion-item>
 
       </ion-list>
@@ -59,8 +62,8 @@
       we choose to put a "logout" button in the footer of side menu.
       the "logout" method in contained in "AppCtrl" controller (see controllers.js)
     -->
-    <ion-footer-bar class="bar-positive">
-      <button class="button button-clear white-color" ng-click="logout()" menu-close>Logout</button>
+    <ion-footer-bar class="bar-positive" dir="rtl">
+      <button class="button button-clear white-color" ng-click="logout()" menu-close>خروج</button>
     </ion-footer-bar>
   
   </ion-side-menu>

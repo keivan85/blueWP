@@ -84,7 +84,7 @@ angular.module('deepBlue.controllers', [])
         $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/categories/").then(
         function(returnedData){
           $scope.siteCategories = returnedData.data;
-          console.log($scope.siteCategories);
+          //console.log($scope.siteCategories);
           $scope.products.forEach(function(item1) {
             item1.categoryObj = $scope.siteCategories.find(function(item2) {
               return item2.name === item1.title;
@@ -140,7 +140,7 @@ angular.module('deepBlue.controllers', [])
 
 
 // controller for "app.catContent" view
-.controller('catContentCtrl', function($scope, $sce, $http, $stateParams, $ionicListDelegate, $ionicScrollDelegate) {
+.controller('catContentCtrl', function($scope, $sce, $http, $stateParams, $ionicListDelegate, $ionicScrollDelegate, $localStorage) {
     
   $scope.doRefresh = function() {
     $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?categories=" + $stateParams.catId).then(
@@ -151,6 +151,11 @@ angular.module('deepBlue.controllers', [])
           element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
           element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
           element.title.rendered = $sce.trustAsHtml(element.title.rendered);
+        if($scope.Favorites.indexOf(element.id) != -1) {
+            element.isFavorite = true;
+          } else {
+            element.isFavorite = false;
+          }
         })
    
     }, function(err){
@@ -164,31 +169,43 @@ angular.module('deepBlue.controllers', [])
     });
   };
 
-   if(!$scope.Favorites) {
+  $scope.Favorites = $localStorage.Favorites;
+  if(!$scope.Favorites) {
     $scope.Favorites = [];
+    console.log($scope.Favorites);
   }
   $scope.toggleFavorite = function(post) {
+    console.log(post);
+    console.log("fired");
+    post.isFavorite = !post.isFavorite;
+
     if(post.isFavorite == true) {
       $scope.Favorites.push(post.id);
     } else {
-      $scope.Favorites.forEach(function(element, index, array) {
-        if (element == post.id) {
-          $scope.Favorites.splice(index, 1);
-          console.log("Spliced index "+ index);
+      $scope.Favorites.forEach(function(e, i, a) {
+        if (e == post.id) {
+          $scope.Favorites.splice(i, 1);
+          console.log("Spliced index "+ i);
         }
       })
     }
+    $localStorage.Favorites = $scope.Favorites;
   }
   
   $scope.recentPosts = [];
   $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?categories=" + $stateParams.catId).then(
     function(returnedData){
       $scope.category_posts = returnedData.data;
-      console.log($scope.category_posts);
+      //console.log($scope.category_posts);
       $scope.category_posts.forEach(function(element, index, array) {
         element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
         element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
         element.title.rendered = $sce.trustAsHtml(element.title.rendered);
+        if($scope.Favorites.indexOf(element.id) != -1) {
+          element.isFavorite = true;
+        } else {
+          element.isFavorite = false;
+        }
       })
    
     }, function(err){
@@ -206,7 +223,7 @@ angular.module('deepBlue.controllers', [])
 })
 
 // controller for "app.catPosts" view
-.controller('catPostsCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate) {
+.controller('catPostsCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate, $localStorage) {
   
   $scope.doRefresh = function(){
     $scope.recentPosts = [];
@@ -219,6 +236,11 @@ angular.module('deepBlue.controllers', [])
           element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
           element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
           element.title.rendered = $sce.trustAsHtml(element.title.rendered);
+          if($scope.Favorites.indexOf(element.id) != -1) {
+            element.isFavorite = true;
+          } else {
+            element.isFavorite = false;
+          }
         })
    
     }, function(err){
@@ -231,6 +253,29 @@ angular.module('deepBlue.controllers', [])
       $scope.$broadcast('scroll.refreshComplete');
     });
   };
+
+  $scope.Favorites = $localStorage.Favorites;
+  if(!$scope.Favorites) {
+    $scope.Favorites = [];
+    console.log($scope.Favorites);
+  }
+  $scope.toggleFavorite = function(post) {
+    console.log(post);
+    console.log("fired");
+    post.isFavorite = !post.isFavorite;
+
+    if(post.isFavorite == true) {
+      $scope.Favorites.push(post.id);
+    } else {
+      $scope.Favorites.forEach(function(e, i, a) {
+        if (e == post.id) {
+          $scope.Favorites.splice(i, 1);
+          console.log("Spliced index "+ i);
+        }
+      })
+    }
+    $localStorage.Favorites = $scope.Favorites;
+  }
   $scope.recentPosts = [];
 
   $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?per_page=15").then(
@@ -241,6 +286,11 @@ angular.module('deepBlue.controllers', [])
         element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
         element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
         element.title.rendered = $sce.trustAsHtml(element.title.rendered);
+        if($scope.Favorites.indexOf(element.id) != -1) {
+          element.isFavorite = true;
+        } else {
+          element.isFavorite = false;
+        }
       })
  
   }, function(err){

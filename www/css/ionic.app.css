@@ -4682,6 +4682,9 @@ ion-tabs.tabs-color-active-dark .tab-item {
     color: #666;
     font-size: 14px;
     margin-bottom: 2px; }
+  .item-font {
+    font-size: 13px !important;
+  }
   .item h1:last-child, .item h2:last-child, .item h3:last-child, .item h4:last-child, .item h5:last-child, .item h6:last-child, .item p:last-child {
     margin-bottom: 0; }
   .item .badge {
@@ -7883,6 +7886,10 @@ a.button {
   This styles are specific to example views, but can be re-used in your projects
 
 */
+.no-padding {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
 .home-title {
   padding-top: 50px !important;
   font-size: 4em;
