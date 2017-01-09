@@ -143,7 +143,7 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
     }
   })
   .state('app.post', {
-    url: "/catPosts/:postId",
+    url: '/catPosts/:postId',
     views: {
       'menuContent': {
         templateUrl: 'templates/post.html',
@@ -152,6 +152,15 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
     }
   })
 
+  .state('app.favorites', {
+    url: '/favorites',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/favorites.html',
+        controller : 'favCtrl'
+      }
+    }
+  })
 
 
 

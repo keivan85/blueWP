@@ -1,4 +1,4 @@
-<ion-view view-title="جدیدترین پست ها" hide-back-button="true">
+<ion-view view-title="پست های پسندیده شده" hide-back-button="true">
 
   <ion-nav-buttons side="left">
       <button class="button button-clear ion-ios-arrow-back white-color" ui-sref="app.main">
@@ -18,16 +18,16 @@
       pulling-text="به روز رسانی مطالب" on-refresh="doRefresh()">
     </ion-refresher>
 
-    <ion-list ng-repeat="post in recentPosts | filter: searchText">  
+    <ion-list  ng-repeat="post in favorite_posts | filter: searchText track by $index">  
       <ion-item class="item item-avatar item-text-wrap" ng-href="#/app/catPosts/{{post.id}}">
 
         <img ng-src="{{post.better_featured_image.source_url}}" alt="All fashion post image">
-        <h2 class="title white-cxolor text-right" ng-bind-html="post.title.rendered" dir="rtl"></h2>
+        <h2 class="title white-cxolor text-right" dir="rtl">{{post.title.rendered}}</h2>
         <p class="text-right" ng-bind-html = "post.excerpt.rendered" dir="rtl"></p>
         <p class="text-right"> [...ادامه مطلب] </p>
-
-      </ion-item>
       
+      </ion-item>
+
       <ion-item class="no-padding" dir="rtl">
 
         <button class="item-font button icon ion-android-share button-clear"> باز نشر</button>

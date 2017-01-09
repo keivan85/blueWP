@@ -146,7 +146,7 @@ angular.module('deepBlue.controllers', [])
     $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?categories=" + $stateParams.catId).then(
       function(returnedData){
         $scope.category_posts = returnedData.data;
-        console.log($scope.category_posts);
+        //console.log($scope.category_posts);
         $scope.category_posts.forEach(function(element, index, array) {
           element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
           element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
@@ -172,11 +172,10 @@ angular.module('deepBlue.controllers', [])
   $scope.Favorites = $localStorage.Favorites;
   if(!$scope.Favorites) {
     $scope.Favorites = [];
-    console.log($scope.Favorites);
+    //console.log($scope.Favorites);
   }
   $scope.toggleFavorite = function(post) {
-    console.log(post);
-    console.log("fired");
+    //console.log(post);
     post.isFavorite = !post.isFavorite;
 
     if(post.isFavorite == true) {
@@ -231,7 +230,7 @@ angular.module('deepBlue.controllers', [])
     $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?per_page=15").then(
       function(returnedData){
         $scope.recentPosts = returnedData.data;
-        console.log($scope.recentPosts);
+        //console.log($scope.recentPosts);
         $scope.recentPosts.forEach(function(element, index, array) {
           element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
           element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
@@ -319,6 +318,64 @@ angular.module('deepBlue.controllers', [])
     // we close the list after that (not strictly needed)
     $ionicListDelegate.closeOptionButtons();
 
+  }
+})
+
+.controller('favCtrl', function($scope, $http, $localStorage, $sce, $stateParams) {
+
+  $scope.doRefresh = function(){
+
+    $scope.Favorites = $localStorage.Favorites;
+    $scope.favorite_posts = [];
+    $scope.Favorites.forEach(function(element, index, array){
+      $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/'+element)
+      .success(function(data){
+        $scope.favorite_posts.push(data);
+        //console.log(data);
+
+        if($scope.favorite_posts.length == $scope.Favorites.length) {
+          $scope.favorite_posts.forEach(function(element, index, array) {
+            element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
+            element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
+            element.title.rendered = $sce.trustAsHtml(element.title.rendered);
+            //console.log($scope.favorite_posts);
+            if($scope.Favorites.indexOf(element.id) != -1) {
+              element.isFavorite = true;
+            } else {
+              element.isFavorite = false;
+        }
+      })
+        }
+      })
+
+      .finally(function(){
+        $scope.$broadcast('scroll.refreshComplete');
+      })
+    })
+
+  }
+
+  $scope.doRefresh();
+
+  $scope.toggleFavorite = function(post){
+    post.isFavorite = !post.isFavorite;
+
+    if(post.isFavorite)
+    {
+      $scope.Favorites.push(post.id)
+    }
+    else
+    {
+      $scope.Favorites.forEach(function(element, index, array){
+        if(element == post.id)
+        {
+          $scope.Favorites.splice(index, 1);
+          //console.log("Spliced Item from index " + index);
+        }
+      })
+    }
+
+    $localStorage.Favorites = $scope.Favorites;
   }
 })
 
