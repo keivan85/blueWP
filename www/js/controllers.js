@@ -85,9 +85,9 @@ angular.module('deepBlue.controllers', [])
         function(returnedData){
           $scope.siteCategories = returnedData.data;
           //console.log($scope.siteCategories);
-          $scope.products.forEach(function(item1) {
-            item1.categoryObj = $scope.siteCategories.find(function(item2) {
-              return item2.name === item1.title;
+          $scope.siteCategories.forEach(function(item1) {
+            item1.categoryObj = $scope.products.find(function(item2) {
+              return item2.title === item1.name;
             });
           });
         }, function(err){
