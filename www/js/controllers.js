@@ -140,7 +140,7 @@ angular.module('deepBlue.controllers', [])
 
 
 // controller for "app.catContent" view
-.controller('catContentCtrl', function($scope, $sce, $http, $stateParams, $ionicListDelegate, $ionicScrollDelegate, $localStorage) {
+.controller('catContentCtrl', function($scope, $sce, $http, $stateParams, $ionicListDelegate, $ionicScrollDelegate, $localStorage, $cordovaSocialSharing) {
     
   $scope.doRefresh = function() {
     $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?categories=" + $stateParams.catId).then(
@@ -174,6 +174,10 @@ angular.module('deepBlue.controllers', [])
     $scope.Favorites = [];
     //console.log($scope.Favorites);
   }
+  $scope.shareAnywhere = function() {
+    $cordovaSocialSharing.share("This is a message to share", "This is a title for sharing", null, "http://mobiproj.com");
+  }
+
   $scope.toggleFavorite = function(post) {
     //console.log(post);
     post.isFavorite = !post.isFavorite;
@@ -222,7 +226,7 @@ angular.module('deepBlue.controllers', [])
 })
 
 // controller for "app.catPosts" view
-.controller('catPostsCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate, $localStorage) {
+.controller('catPostsCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate, $localStorage, $cordovaSocialSharing) {
   
   $scope.doRefresh = function(){
     $scope.recentPosts = [];
@@ -252,6 +256,10 @@ angular.module('deepBlue.controllers', [])
       $scope.$broadcast('scroll.refreshComplete');
     });
   };
+
+  $scope.shareAnywhere = function() {
+    $cordovaSocialSharing.share("This is a message to share", "This is a title for sharing", null, "http://mobiproj.com");
+  }
 
   $scope.Favorites = $localStorage.Favorites;
   if(!$scope.Favorites) {
@@ -321,7 +329,7 @@ angular.module('deepBlue.controllers', [])
   }
 })
 
-.controller('favCtrl', function($scope, $http, $localStorage, $sce, $stateParams) {
+.controller('favCtrl', function($scope, $http, $localStorage, $sce, $stateParams, $cordovaSocialSharing) {
 
   $scope.doRefresh = function(){
 
@@ -357,6 +365,9 @@ angular.module('deepBlue.controllers', [])
 
   $scope.doRefresh();
 
+  $scope.shareAnywhere = function() {
+    $cordovaSocialSharing.share("This is a message to share", "This is a title for sharing", null, "http://mobiproj.com");
+  }
   $scope.toggleFavorite = function(post){
     post.isFavorite = !post.isFavorite;
 
