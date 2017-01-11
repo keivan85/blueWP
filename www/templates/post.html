@@ -8,29 +8,23 @@
 
  
       
-      <div class="item item-avatar">
-        <img ng-src="{{post_image}}">
+        <div class="item-image" style="position:relative;" dir="rtl">
+          <img ng-src="{{post_image}}" style="filter: blur(3px);">
+            <!--<div class="text-right item-text-wrap" ng-bind-html="post_title" dir="rtl"></div>
+            <button class="item-font button icon ion-android-share button-clear" ng-click="shareAnywhere()"> باز نشر</button>-->
+              <p class="item-content" style="background:rgba(255,255,255,.3);position:absolute; top: 20px; padding: 1em; font-size: 18px; color: #0a1612" ng-bind-html="post_title"></p>
+              <button class="button icon ion-share button-clear" style="position:absolute; top: 75px; left:5px; color: #0a1612; text-align: right !important;" ng-click="shareAnywhere()"></button>
+
+
+              <!--<button class=" text-right">
+                <p class="white-color product-price-price translate" ng-bind-html="post_title"></p>
+                <p class="white-color product-price-price"> پست</p>
+              </button>-->
+        </div>
+        <!--<img ng-src="{{post_image}}">
         <div class="text-right item-text-wrap" ng-bind-html="post_title" dir="rtl"></div>
-        <div class="card">
-         <div class="item item-text-wrap row">
-           <button class="button button-light col col-20">
-               <i class="icon ion-social-whatsapp"></i>
-           </button>
-           <button class="button button-light col col-20">
-               <i class="icon ion-social-facebook"></i>
-           </button>
-           <button class="button button-light col col-20">
-               <i class="icon ion-social-twitter"></i>
-           </button>  
-           <button class="button button-light col col-20">
-               <i class="icon ion-android-textsms"></i>
-           </button> 
-           <button class="button button-light col col-20">
-               <i class="icon ion-ios-email"></i>
-           </button> 
-         </div>
-      </div>
-      </div>
+        <button class="item-font button icon ion-android-share button-clear" ng-click="shareAnywhere()"> باز نشر</button>-->
+
 
       <div class="item" dir="rtl">
         <p class="text-right item-text-wrap" ng-bind-html="post_content"></p>
