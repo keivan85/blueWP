@@ -364,7 +364,7 @@ angular.module('deepBlue.controllers', [])
 
   }
 
-  $scope.doRefresh();
+  
 
   $scope.toggleFavorite = function(post){
     post.isFavorite = !post.isFavorite;
@@ -386,6 +386,8 @@ angular.module('deepBlue.controllers', [])
 
     $localStorage.Favorites = $scope.Favorites;
   }
+
+  $scope.doRefresh();
 })
 
 .controller('CheckoutCtrl', function($scope, CartService, $state) {
