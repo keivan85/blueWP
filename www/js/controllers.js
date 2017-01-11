@@ -55,40 +55,7 @@ angular.module('deepBlue.controllers', [])
 
 
 
-// post controller.
-.controller('postCtrl', function($scope, $http, $stateParams, $sce, $cordovaSocialSharing) {
-    $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId).then(
-      function(returnedData){
-        $scope.postDetails = returnedData.data;
-        $scope.post_title = $sce.trustAsHtml($scope.postDetails.title.rendered);
-        $scope.post_content = $sce.trustAsHtml($scope.postDetails.content.rendered);
-        $scope.post_image = $scope.postDetails.better_featured_image.source_url;
-      }, function(err){
-        console.log(err);
-      })
 
-      $scope.share = function(t, msg, img, link){  
-        if(t == 'w')
-            window.plugins.socialsharing
-            .shareViaWhatsApp(msg, '', link);
-        else if(t == 'f')
-            window.plugins.socialsharing
-            .shareViaFacebook(msg, img, link);    
-        else if(t == 't')
-            window.plugins.socialsharing
-            .shareViaTwitter(msg, img, link);    
-        else if(t == 'sms')
-            window.plugins.socialsharing
-            .shareViaSMS(msg+' '+img+' '+link);    
-        else
-        {
-            var sub = 'Beautiful images inside ..';
-            window.plugins.socialsharing
-            .shareViaEmail(msg, sub, '');        
-        }    
-      }
-
-})
 
 // main controller.
 .controller('mainCtrl', function($scope, $ionicActionSheet, BackendService, CartService, $http, $sce ) {
@@ -159,6 +126,21 @@ angular.module('deepBlue.controllers', [])
 })
 
 
+// post controller.
+.controller('postCtrl', function($scope, $http, $stateParams, $sce, $cordovaSocialSharing) {
+    $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId).then(
+      function(returnedData){
+        $scope.postDetails = returnedData.data;
+        $scope.post_title = $sce.trustAsHtml($scope.postDetails.title.rendered);
+        $scope.post_content = $sce.trustAsHtml($scope.postDetails.content.rendered);
+        $scope.post_image = $scope.postDetails.better_featured_image.source_url;
+      }, function(err){
+        console.log(err);
+      })
+
+
+})
+
 
 // controller for "app.catContent" view
 .controller('catContentCtrl', function($scope, $sce, $http, $stateParams, $ionicListDelegate, $ionicScrollDelegate, $localStorage, $cordovaSocialSharing) {
@@ -195,9 +177,6 @@ angular.module('deepBlue.controllers', [])
     $scope.Favorites = [];
     //console.log($scope.Favorites);
   }
-  $scope.shareAnywhere = function() {
-    $cordovaSocialSharing.share("This is a message to share", "This is a title for sharing", null, "http://mobiproj.com");
-  }
 
   $scope.toggleFavorite = function(post) {
     //console.log(post);
@@ -209,7 +188,7 @@ angular.module('deepBlue.controllers', [])
       $scope.Favorites.forEach(function(e, i, a) {
         if (e == post.id) {
           $scope.Favorites.splice(i, 1);
-          console.log("Spliced index "+ i);
+          //console.log("Spliced index "+ i);
         }
       })
     }
@@ -277,10 +256,6 @@ angular.module('deepBlue.controllers', [])
       $scope.$broadcast('scroll.refreshComplete');
     });
   };
-
-  $scope.shareAnywhere = function() {
-    $cordovaSocialSharing.share("This is a message to share", "This is a title for sharing", null, "http://mobiproj.com");
-  }
 
   $scope.Favorites = $localStorage.Favorites;
   if(!$scope.Favorites) {
@@ -356,6 +331,7 @@ angular.module('deepBlue.controllers', [])
 
     $scope.Favorites = $localStorage.Favorites;
     $scope.favorite_posts = [];
+    //console.log($scope.favorite_posts);
     $scope.Favorites.forEach(function(element, index, array){
       $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/'+element)
       .success(function(data){
@@ -386,9 +362,6 @@ angular.module('deepBlue.controllers', [])
 
   $scope.doRefresh();
 
-  $scope.shareAnywhere = function() {
-    $cordovaSocialSharing.share("This is a message to share", "This is a title for sharing", null, "http://mobiproj.com");
-  }
   $scope.toggleFavorite = function(post){
     post.isFavorite = !post.isFavorite;
 
