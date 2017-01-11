@@ -56,7 +56,7 @@ angular.module('deepBlue.controllers', [])
 
 
 // post controller.
-.controller('postCtrl', function($scope, $http, $stateParams, $sce) {
+.controller('postCtrl', function($scope, $http, $stateParams, $sce, $cordovaSocialSharing) {
     $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId).then(
       function(returnedData){
         $scope.postDetails = returnedData.data;
@@ -66,6 +66,23 @@ angular.module('deepBlue.controllers', [])
       }, function(err){
         console.log(err);
       })
+
+    $scope.share = function(t, msg, img, link){  
+        if(t == 'w')
+            window.plugins.socialsharing.shareViaWhatsApp(msg, '', link);
+        else if(t == 'f')
+            window.plugins.socialsharing.shareViaFacebook(msg, img, link);    
+        else if(t == 't')
+            window.plugins.socialsharing.shareViaTwitter(msg, img, link);    
+        else if(t == 'sms')
+            window.plugins.socialsharing.shareViaSMS(msg+' '+img+' '+link);    
+        else
+        {
+            var sub = 'Beautiful images inside ..';
+            window.plugins.socialsharing
+            .shareViaEmail(msg, sub, '');        
+        }    
+    }
 
 })
 
@@ -85,9 +102,9 @@ angular.module('deepBlue.controllers', [])
         function(returnedData){
           $scope.siteCategories = returnedData.data;
           //console.log($scope.siteCategories);
-          $scope.siteCategories.forEach(function(item1) {
-            item1.categoryObj = $scope.products.find(function(item2) {
-              return item2.title === item1.name;
+          $scope.products.forEach(function(item1) {
+            item1.categoryObj = $scope.siteCategories.find(function(item2) {
+              return item2.name === item1.title;
             });
           });
         }, function(err){

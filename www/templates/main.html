@@ -5,17 +5,17 @@
       pulling-text="به روز رسانی دسته بندی ها" on-refresh="doRefresh()">
     </ion-refresher>
 
-    <a ng-repeat = "category in siteCategories" ng-href="#/app/catContent/{{category.id}}">
+    <a ng-repeat = "category in products" ng-href="#/app/catContent/{{category.id}}">
         <div class="item item-image" style="position:relative;">
-          <img ng-src="{{category.categoryObj.image}}">
+          <img ng-src="{{category.image}}">
               <button class="button button-positive product-price text-right">
-                  <p class="white-color product-price-price translate">{{category.count}}</p>
+                  <p class="white-color product-price-price translate">{{category.categoryObj.count}}</p>
                   <p class="white-color product-price-price"> پست</p>
               </button>
         </div>
 
         <div class="item ui-gradient-deepblue text-right">
-          <h2 class="title white-color">{{category.categoryObj.title}}</h2>
+          <h2 class="title white-color">{{category.title}}</h2>
         </div>
 
         <!--<div class="item item-body text-right">
