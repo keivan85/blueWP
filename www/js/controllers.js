@@ -127,23 +127,27 @@ angular.module('deepBlue.controllers', [])
 
 
 // post controller.
-.controller('postCtrl', function($scope, $http, $stateParams, $sce, $cordovaSocialSharing) {
+.controller('postCtrl', function($scope, $http, $stateParams, $sce, $localStorage) {
     $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId).then(
       function(returnedData){
         $scope.postDetails = returnedData.data;
         $scope.post_title = $sce.trustAsHtml($scope.postDetails.title.rendered);
         $scope.post_content = $sce.trustAsHtml($scope.postDetails.content.rendered);
         $scope.post_image = $scope.postDetails.better_featured_image.source_url;
+
       }, function(err){
         console.log(err);
       })
 
+    $scope.Share = function() {
+      window.plugins.socialsharing.share($scope.post_title, $scope.post_image);
+    }
 
 })
 
 
 // controller for "app.catContent" view
-.controller('catContentCtrl', function($scope, $sce, $http, $stateParams, $ionicListDelegate, $ionicScrollDelegate, $localStorage, $cordovaSocialSharing) {
+.controller('catContentCtrl', function($scope, $sce, $http, $stateParams, $ionicListDelegate, $ionicScrollDelegate, $localStorage) {
     
   $scope.doRefresh = function() {
     $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?categories=" + $stateParams.catId).then(
@@ -226,7 +230,7 @@ angular.module('deepBlue.controllers', [])
 })
 
 // controller for "app.catPosts" view
-.controller('catPostsCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate, $localStorage, $cordovaSocialSharing) {
+.controller('catPostsCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate, $localStorage) {
   
   $scope.doRefresh = function(){
     $scope.recentPosts = [];
@@ -325,7 +329,7 @@ angular.module('deepBlue.controllers', [])
   }
 })
 
-.controller('favCtrl', function($scope, $http, $localStorage, $sce, $stateParams, $cordovaSocialSharing) {
+.controller('favCtrl', function($scope, $http, $localStorage, $sce, $stateParams) {
 
   $scope.doRefresh = function(){
 
