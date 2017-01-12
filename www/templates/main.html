@@ -5,7 +5,7 @@
       pulling-text="به روز رسانی دسته بندی ها" on-refresh="doRefresh()">
     </ion-refresher>
 
-    <a ng-repeat = "category in products" ng-href="#/app/catContent/{{category.id}}">
+    <a ng-repeat = "category in products" class="a-link-decoration" ng-href="#/app/catContent/{{category.id}}">
         <div class="item item-image" style="position:relative;">
           <img ng-src="{{category.image}}">
               <button class="button button-positive product-price text-right">

@@ -41,19 +41,24 @@
           Menu items are wrapped In the following <ion-list>. 
           Each one has attribute "menu-close" set in order to automatically close side menu on click 
         -->
-        <ion-item ng-show="user.avatar" menu-close href="#/app/account" class="item-menu-avatar text-center">
+        <div ng-show="user.avatar" menu-close href="#/app/account" class="side-item item-menu-avatar text-center">
           <img ng-src="{{user.avatar}}" class="avatar-menu">
-        </ion-item>
-        <ion-item menu-close href="#/app/main">
-          دسته بندی اصلی
-        </ion-item>
-        <ion-item menu-close href="#/app/catPosts">
-          جدیدترین پست ها
-        </ion-item>
-        <ion-item menu-close href="#/app/favorites">
-          مطالب پسندیده شده
-        </ion-item>
-
+        </div>
+        <a class="a-link-decoration" href="#/app/main">  
+          <div class="side-item iocn-fw-home" menu-close>
+            دسته بندی اصلی
+          </div>
+        </a>
+        <a class="a-link-decoration" href="#/app/catPosts">
+          <div class="side-item iocn-fw-news" menu-close>
+            جدیدترین پست ها
+          </div>
+        </a>
+        <a class="a-link-decoration" href="#/app/favorites">
+          <div class="side-item icon ion-heart" menu-close>
+            مطالب پسندیده شده
+          </div>
+        </a>
       </ion-list>
     </ion-content>
     

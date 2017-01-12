@@ -25,7 +25,7 @@ angular.module('deepBlue.controllers', [])
   // and auth stuff in a better way.
   
   $rootScope.user = {
-    avatar : 'sampledata/images/avatar.jpg'
+    avatar : 'sampledata/images/avatar.png'
   };
 
 
@@ -38,7 +38,7 @@ angular.module('deepBlue.controllers', [])
       address : "Rue de Galvignac",
       city : "RonnieLand",
       zip  : "00007",
-      avatar : 'sampledata/images/avatar.jpg'
+      avatar : 'sampledata/images/avatar.png'
     };
     //finally, we route our app to the 'app.main' view
     $state.go('app.main');
