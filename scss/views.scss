@@ -4,6 +4,41 @@
 
 */
 
+@font-face {
+    font-family: 'fontawesome';
+    src:url('../fonts/fontawesome-webfont.eot');
+    src:url('../fonts/fontawesome-webfont.eot') format('embedded-opentype'),
+        url('../fonts/fontawesome-webfont.woff') format('woff'),
+        url('../fonts/fontawesome-webfont.ttf') format('truetype'),
+        url('../fonts/fontawesome-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.iocn-fw-share:before {
+  font-family: "fontawesome";
+  content: "\f1e0"
+}
+.iocn-fw-home:before {
+  font-family: "fontawesome";
+  content: "\f015"
+}
+.iocn-fw-news:before {
+  font-family: "fontawesome";
+  content: "\f1ea"
+}
+.side-item {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: -1px;
+  padding: 16px;
+  font-size: 16px; }
+
+.a-link-decoration {
+  text-decoration: none;
+  color: white;
+}
 .home-title{
     padding-top:50px !important;
     font-size:4em;
@@ -46,8 +81,8 @@
 }
 
 .avatar-menu{
-  border-radius:100%; 
-  border:solid white 2px; 
+  background: #f7ce3e;
+  border-radius: 5%; 
   height:120px; 
   width:120px; 
   margin:auto;

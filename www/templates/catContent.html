@@ -19,18 +19,14 @@
     </ion-refresher>
 
     <ion-list  ng-repeat="catPost in category_posts | filter: searchText">  
-      <ion-item class="item item-avatar item-text-wrap" ng-href="#/app/catPosts/{{catPost.id}}">
-
-        <img ng-src="{{catPost.better_featured_image.source_url}}" alt="All fashion catPost image">
-        <h2 class="title white-cxolor text-right" ng-bind-html="catPost.title.rendered" dir="rtl"></h2>
-        <p class="text-right" ng-bind-html = "catPost.excerpt.rendered" dir="rtl"></p>
-        <p class="text-right"> [...ادامه مطلب] </p>
-      
-      </ion-item>
-
+      <a href="#/app/catPosts/{{catPost.id}}"
+        <div class="item item-image" style="position:relative;" dir="rtl">
+            <img ng-src="{{catPost.better_featured_image.source_url}}" style="filter: blur(3px);">
+                <div class="item-content item-text-wrap text-right" style="background:rgba(255,255,255,.3);position:absolute; top: 20px; padding: 1em; font-size: 18px; color: #0a1612" ng-bind-html="catPost.title.rendered"></div>
+        </div>
+      </a>
       <ion-item class="no-padding" dir="rtl">
 
-        <button class="item-font button icon ion-android-share button-clear" ng-click="shareAnywhere()"> باز نشر</button>
         <button class="item-font button icon ion-heart button-clear" ng-class="{'button-assertive':catPost.isFavorite}" ng-click="toggleFavorite(catPost)"> پسندیدن</button>
 
       </ion-item>
