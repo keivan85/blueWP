@@ -19,11 +19,12 @@
     </ion-refresher>
 
     <ion-list  ng-repeat="post in favorite_posts | filter: searchText track by $index">  
-      <div class="item item-image" style="position:relative;" ng-href="#/app/catPosts/{{post.id}}" dir="rtl">
-          <img ng-src="{{post.better_featured_image.source_url}}" style="filter: blur(3px);">
+      <a href="#/app/catPosts/{{post.id}}">
+        <div class="item item-image" style="position:relative;" dir="rtl">
+            <img ng-src="{{post.better_featured_image.source_url}}" style="filter: blur(3px);">
               <div class="item-content item-text-wrap text-right p-text-decoration">{{post.title.rendered}}</div>
-      </div>
-
+        </div>
+      </a>
       <ion-item class="no-padding" dir="rtl">
 
         <button class="item-font button icon ion-heart button-clear" ng-class="{'button-assertive':post.isFavorite}" ng-click="toggleFavorite(post)"> پسندیدن</button>
