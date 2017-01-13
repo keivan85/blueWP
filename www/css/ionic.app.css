@@ -3121,8 +3121,8 @@ a.subdued {
     .bar.bar-stable.bar-footer {
       background-image: linear-gradient(180deg, #b2b2b2, #b2b2b2 50%, transparent 50%); }
   .bar.bar-positive {
-    border-color: #f7ce3e;
-    background-color: #f7ce3e;
+    border-color: #ffc857;
+    background-color: #ffc857;
     background-image: linear-gradient(0deg, #0c60ee, #0c60ee 50%, transparent 50%);
     color: #fff; }
     .bar.bar-positive .title {
@@ -7847,7 +7847,7 @@ a.button {
   .deepblue-theme h1, .deepblue-theme h2, .deepblue-theme h3, .deepblue-theme h4, .deepblue-theme h5, .deepblue-theme h6, .deepblue-theme .h1, .deepblue-theme .h2, .deepblue-theme .h3, .deepblue-theme .h4, .deepblue-theme .h5, .deepblue-theme .h6 {
     color: #ffffff; }
   .deepblue-theme .pane, .deepblue-theme .view {
-    background: #1A2930 }
+    background: #ffc857 }
   .deepblue-theme .menu {
     background: #0a1612; }
     .deepblue-theme .menu .item, .deepblue-theme .menu .item-complex .item-content {
@@ -7861,9 +7861,9 @@ a.button {
     .deepblue-theme .menu .item:first-child, .deepblue-theme .menu .item-complex:first-child .item-content:first-child {
       border-top: none; }
   .deepblue-theme .bar.bar-deepblue {
-    background: #f7ce3e }
+    background: #ffc857 }
   .deepblue-theme .bar.bar-deepblue-reverse {
-    background: #f7ce3e }
+    background: #ffc857 }
   .deepblue-theme .bar.bar-deepblue-bordertop {
     border-top: solid rgba(238, 238, 238, 0.8) 1px; }
   .deepblue-theme .bar.bar-deepblue-borderbottom {
@@ -7949,8 +7949,14 @@ a.button {
   border: solid white 4px; }
 
 .avatar-menu {
-  background: #f7ce3e;
+  background: #ffc857;
   border-radius: 5%;
   height: 120px;
   width: 120px;
   margin: auto; }
+
+  .logo-menu {
+  height: 240px;
+  width: 240px;
+  margin: auto; 
+  }
