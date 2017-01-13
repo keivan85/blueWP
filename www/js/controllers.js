@@ -58,7 +58,13 @@ angular.module('deepBlue.controllers', [])
 
 
 // main controller.
-.controller('mainCtrl', function($scope, $ionicActionSheet, BackendService, CartService, $http, $sce ) {
+.controller('mainCtrl', function($scope, 
+  $ionicActionSheet, 
+  BackendService, 
+  CartService, 
+  $http, 
+  $sce,
+  ionicToast ) {
   
 
   $scope.siteCategories = [];
@@ -79,6 +85,7 @@ angular.module('deepBlue.controllers', [])
             });
           });
         }, function(err){
+          ionicToast.show('در حال حاضر امکان به روز رسانی مطالب وجود ندارد', 'top', false, 2000);
           console.log(err);
         })
       })
@@ -147,7 +154,14 @@ angular.module('deepBlue.controllers', [])
 
 
 // controller for "app.catContent" view
-.controller('catContentCtrl', function($scope, $sce, $http, $stateParams, $ionicListDelegate, $ionicScrollDelegate, $localStorage) {
+.controller('catContentCtrl', function($scope, 
+  $sce, 
+  $http, 
+  $stateParams, 
+  $ionicListDelegate, 
+  $ionicScrollDelegate, 
+  $localStorage, 
+  ionicToast) {
     
   $scope.doRefresh = function() {
     $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?categories=" + $stateParams.catId).then(
@@ -164,8 +178,9 @@ angular.module('deepBlue.controllers', [])
             element.isFavorite = false;
           }
         })
-   
+        ionicToast.show('در حال مشاهده آخرین مطالب هستید', 'top', false, 2000);
     }, function(err){
+        ionicToast.show('در حال حاضر امکان به روز رسانی مطالب وجود ندارد', 'top', false, 2000);
       console.log(err);
     })
 
@@ -230,7 +245,14 @@ angular.module('deepBlue.controllers', [])
 })
 
 // controller for "app.catPosts" view
-.controller('catPostsCtrl', function($scope, CartService, $ionicListDelegate, $http, $sce, $ionicScrollDelegate, $localStorage) {
+.controller('catPostsCtrl', function($scope, 
+  CartService, 
+  $ionicListDelegate, 
+  $http, 
+  $sce, 
+  $ionicScrollDelegate, 
+  $localStorage,
+  ionicToast) {
   
   $scope.doRefresh = function(){
     $scope.recentPosts = [];
@@ -249,8 +271,9 @@ angular.module('deepBlue.controllers', [])
             element.isFavorite = false;
           }
         })
-   
+        ionicToast.show('در حال مشاهده آخرین مطالب هستید', 'top', false, 2000);
     }, function(err){
+        ionicToast.show('در حال حاضر امکان به روز رسانی مطالب وجود ندارد', 'top', false, 2000);
       console.log(err);
     })
 
@@ -329,7 +352,12 @@ angular.module('deepBlue.controllers', [])
   }
 })
 
-.controller('favCtrl', function($scope, $http, $localStorage, $sce, $stateParams) {
+.controller('favCtrl', function($scope, 
+  $http, 
+  $localStorage, 
+  $sce, 
+  $stateParams,
+  ionicToast) {
 
   $scope.doRefresh = function(){
 
@@ -352,8 +380,10 @@ angular.module('deepBlue.controllers', [])
               element.isFavorite = true;
             } else {
               element.isFavorite = false;
-        }
-      })
+            }
+          })
+          ionicToast.show('در حال مشاهده آخرین مطالبی که پسندیده اید هستید', 'top', false, 2000);
+
         }
       })
 
