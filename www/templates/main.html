@@ -1,18 +1,11 @@
 <ion-view view-title="" hide-back-button="true">
 
   <ion-content>
-    <ion-refresher
-      pulling-text="به روز رسانی دسته بندی ها" on-refresh="doRefresh()">
-    </ion-refresher>
 
     <a ng-repeat = "category in products" class="a-link-decoration" ng-href="#/app/catContent/{{category.id}}">
         <div class="item item-image" style="position:relative;">
-          <img ng-src="{{category.image}}">
+          <img ng-src="{{category.image}}" style="height: 123.5px !important;">
         </div>
-
-        <!--<div class="item item-body text-right">
-          {{category.description}}
-        </div>-->
     </a>
 
     

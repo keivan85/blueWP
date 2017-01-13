@@ -11,7 +11,7 @@
   
 */
 
-angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services', 'ngStorage'])
+angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'deepBlue.services', 'ngStorage'])
 
 .run(function($ionicPlatform, $rootScope, $timeout, $state) {
   $ionicPlatform.ready(function() {
