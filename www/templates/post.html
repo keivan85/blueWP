@@ -1,26 +1,16 @@
 <ion-view view-title="" hide-back-button="true">
 
   <ion-nav-buttons side="left">
-      <button class="button button-clear ion-ios-arrow-back white-color" ui-sref="app.catPosts">
+      <button class="button button-clear ion-ios-arrow-back white-color" ui-sref="app.catPosts"> عقب
       </button>
   </ion-nav-buttons>
   <ion-content>
-
- 
-      
-        <div class="item-image" style="position:relative;" dir="rtl">
-          <img ng-src="{{post_image}}" style="filter: blur(3px);">
-            <!--<div class="text-right item-text-wrap" ng-bind-html="post_title" dir="rtl"></div>
-            <button class="item-font button icon ion-android-share button-clear" ng-click="shareAnywhere()"> باز نشر</button>-->
-              <p class="item-content item-text-wrap text-right p-text-decoration" ng-bind-html="post_title"></p>
-
-        </div>
-
-
-
+      <div class="item-image" style="position:relative;" dir="rtl">
+        <img ng-src="{{post_image}}" style="filter: blur(3px);">
+          <p class="item-content item-text-wrap text-right p-text-decoration" ng-bind-html="post_title"></p>
+      </div>
+        
       <div class="item" dir="rtl">
-                    <i class="fa fa-google"></i>
-
         <p class="text-right item-text-wrap" ng-bind-html="post_content"></p>
       </div>
 

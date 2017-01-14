@@ -1,28 +1,9 @@
-/*
-  
-  DeepBlue Starter Kit - version 1.1
-  Copyright (c) 2015 INMAGIK SRL - www.inmagik.com
-  All rights reserved
 
-  written by Mauro Bianchi
-  bianchimro@gmail.com  
-  
-  file: controllers.js
-  description: this file contains all controllers of the DeepBlue app.
-
-*/
-
-
-//controllers are packed into a module
 angular.module('deepBlue.controllers', [])
 
 //top view controller
 .controller('AppCtrl', function($scope, $rootScope, $state) {
-  
-  // #SIMPLIFIED-IMPLEMENTATION:
-  // Simplified handling and logout function.
-  // A real app would delegate a service for organizing session data
-  // and auth stuff in a better way.
+
   
   $rootScope.user = {
     avatar : 'sampledata/images/avatar.png'
@@ -31,44 +12,29 @@ angular.module('deepBlue.controllers', [])
 
 
   $scope.login = function(){
-    //in this case we just set the user in $rootScope
     $rootScope.user = {
-      email : "mary@ubiqtspaces.com",
-      name : "Mary Ubiquitous",
-      address : "Rue de Galvignac",
-      city : "RonnieLand",
-      zip  : "00007",
+      name : "Shiksho",
       avatar : 'sampledata/images/avatar.png'
     };
-    //finally, we route our app to the 'app.main' view
     $state.go('app.main');
   };
 
   $scope.logout = function(){
-  $rootScope.user = {};
-  $state.go('app.start')
+  ionic.Platform.exitApp();
   };
 })
-
-// This controller is bound to the "app.account" view
-
-
-
-
 
 
 // main controller.
 .controller('mainCtrl', function($scope, 
   $ionicActionSheet, 
   BackendService, 
-  CartService, 
   $http, 
   $sce,
   ionicToast ) {
   
 
   $scope.siteCategories = [];
-  $scope.catPosts = CartService.loadCart();
 
   $scope.doRefresh = function(){
       BackendService.getProducts()
@@ -85,7 +51,7 @@ angular.module('deepBlue.controllers', [])
             });
           });
         }, function(err){
-          ionicToast.show('در حال حاضر امکان به روز رسانی مطالب وجود ندارد', 'top', false, 2000);
+          ionicToast.show('در حال حاضر امکان به روز رسانی مطالب وجود ندارد', 'top', false, 2500);
           console.log(err);
         })
       })
@@ -95,46 +61,18 @@ angular.module('deepBlue.controllers', [])
       });
   };
 
-
-
-
-  // private method to add a product to catPosts
-  var addProductToCart = function(product){
-    $scope.catPosts.products.push(product);
-    CartService.saveCart($scope.catPosts);
-  };
-
-  // method to add a product to catPosts via $ionicActionSheet
-  $scope.addProduct = function(product){
-    $ionicActionSheet.show({
-       buttons: [
-         { text: '<b>Add to catPosts</b>' }
-       ],
-       titleText: 'Buy ' + product.title,
-       cancelText: 'Cancel',
-       cancel: function() {
-          // add cancel code if needed ..
-       },
-       buttonClicked: function(index) {
-         if(index == 0){
-           addProductToCart(product);
-           return true;
-         }
-         return true;
-       }
-     });
-  };
- 
-
-
-  //trigger initial refresh of products
   $scope.doRefresh();
 
 })
 
 
 // post controller.
-.controller('postCtrl', function($scope, $http, $stateParams, $sce, $localStorage) {
+.controller('postCtrl', function(
+  $scope, 
+  $http, 
+  $stateParams, 
+  $sce, 
+  $localStorage) {
     $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId).then(
       function(returnedData){
         $scope.postDetails = returnedData.data;
@@ -154,7 +92,8 @@ angular.module('deepBlue.controllers', [])
 
 
 // controller for "app.catContent" view
-.controller('catContentCtrl', function($scope, 
+.controller('catContentCtrl', function(
+  $scope, 
   $sce, 
   $http, 
   $stateParams, 
@@ -178,9 +117,9 @@ angular.module('deepBlue.controllers', [])
             element.isFavorite = false;
           }
         })
-        ionicToast.show('در حال مشاهده آخرین مطالب هستید', 'top', false, 2000);
+        ionicToast.show('در حال مشاهده آخرین مطالب هستید', 'top', false, 2500);
     }, function(err){
-        ionicToast.show('در حال حاضر امکان به روز رسانی مطالب وجود ندارد', 'top', false, 2000);
+        ionicToast.show('در حال حاضر امکان به روز رسانی مطالب وجود ندارد', 'top', false, 2500);
       console.log(err);
     })
 
@@ -245,8 +184,8 @@ angular.module('deepBlue.controllers', [])
 })
 
 // controller for "app.catPosts" view
-.controller('catPostsCtrl', function($scope, 
-  CartService, 
+.controller('catPostsCtrl', function(
+  $scope, 
   $ionicListDelegate, 
   $http, 
   $sce, 
@@ -271,9 +210,9 @@ angular.module('deepBlue.controllers', [])
             element.isFavorite = false;
           }
         })
-        ionicToast.show('در حال مشاهده آخرین مطالب هستید', 'top', false, 2000);
+        ionicToast.show('در حال مشاهده آخرین مطالب هستید', 'top', false, 2500);
     }, function(err){
-        ionicToast.show('در حال حاضر امکان به روز رسانی مطالب وجود ندارد', 'top', false, 2000);
+        ionicToast.show('در حال حاضر امکان به روز رسانی مطالب وجود ندارد', 'top', false, 2500);
       console.log(err);
     })
 
@@ -290,8 +229,7 @@ angular.module('deepBlue.controllers', [])
     console.log($scope.Favorites);
   }
   $scope.toggleFavorite = function(post) {
-    console.log(post);
-    console.log("fired");
+    //console.log(post);
     post.isFavorite = !post.isFavorite;
 
     if(post.isFavorite == true) {
@@ -331,32 +269,13 @@ angular.module('deepBlue.controllers', [])
     $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop(true);
   };
 
-
-
-
-  // using the CartService to load cart from localStorage
-  $scope.catPosts = CartService.loadCart();
-  
-  // we assign getTotal method of CartService to $scope to have it available
-  // in our template
-  $scope.getTotal = CartService.getTotal;
-
-  // removes product from catPosts (making in persistent)
-  $scope.dropProduct = function($index){
-    $scope.catPosts.products.splice($index, 1);
-    CartService.saveCart($scope.catPosts);
-    // as this method is triggered in an <ion-option-button> 
-    // we close the list after that (not strictly needed)
-    $ionicListDelegate.closeOptionButtons();
-
-  }
 })
 
-.controller('favCtrl', function($scope, 
+.controller('favCtrl', function(
+  $scope, 
   $http, 
   $localStorage, 
   $sce, 
-  $stateParams,
   ionicToast) {
 
   $scope.doRefresh = function(){
@@ -364,34 +283,40 @@ angular.module('deepBlue.controllers', [])
     $scope.Favorites = $localStorage.Favorites;
     $scope.favorite_posts = [];
     //console.log($scope.favorite_posts);
-    $scope.Favorites.forEach(function(element, index, array){
-      $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/'+element)
-      .success(function(data){
-        $scope.favorite_posts.push(data);
-        //console.log(data);
+    if($scope.Favorites.length > 0) {
+      $scope.Favorites.forEach(function(element, index, array){
+        $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/'+element).success(
+          function(data){
+          $scope.favorite_posts.push(data);
+          //console.log(data);
 
-        if($scope.favorite_posts.length == $scope.Favorites.length) {
-          $scope.favorite_posts.forEach(function(element, index, array) {
-            element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
-            element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
-            element.title.rendered = $sce.trustAsHtml(element.title.rendered);
-            //console.log($scope.favorite_posts);
-            if($scope.Favorites.indexOf(element.id) != -1) {
-              element.isFavorite = true;
-            } else {
-              element.isFavorite = false;
-            }
-          })
-          ionicToast.show('در حال مشاهده آخرین مطالبی که پسندیده اید هستید', 'top', false, 2000);
+          if($scope.favorite_posts.length == $scope.Favorites.length) {
+            $scope.favorite_posts.forEach(function(element, index, array) {
+              element.excerpt.rendered = element.excerpt.rendered.substr(0, 150);
+              element.excerpt.rendered = $sce.trustAsHtml(element.excerpt.rendered);
+              element.title.rendered = $sce.trustAsHtml(element.title.rendered);
+              //console.log($scope.favorite_posts);
+              if($scope.Favorites.indexOf(element.id) != -1) {
+                element.isFavorite = true;
+              } else {
+                element.isFavorite = false;
+              }
+            })
+          } else {
+             $scope.$broadcast('scroll.refreshComplete');
 
-        }
+          }
+        })
+
+        .finally(function(){
+          $scope.$broadcast('scroll.refreshComplete');
+
+        })
       })
-
-      .finally(function(){
-        $scope.$broadcast('scroll.refreshComplete');
-      })
-    })
-
+    } else {
+      $scope.$broadcast('scroll.refreshComplete');
+      ionicToast.show('شما هنوز مطلبی را به لیست مطالب پسندیده شده اضافه نکردید', 'middle', false, '5000');
+    }
   }
 
   
@@ -418,23 +343,4 @@ angular.module('deepBlue.controllers', [])
   }
 
   $scope.doRefresh();
-})
-
-.controller('CheckoutCtrl', function($scope, CartService, $state) {
-  
-  //using the CartService to load cart from localStorage
-  $scope.catPosts = CartService.loadCart();
-  $scope.getTotal = CartService.getTotal;
-
-  $scope.getTotal = CartService.getTotal;
-
-  // #NOT-IMPLEMENTED: This method is just calling alert()
-  // you should implement this method to connect an ecommerce
-  // after that the cart is reset and user is redirected to main
-  $scope.checkout = function(){
-    alert("this implementation is up to you!");
-    $scope.catPosts = CartService.resetCart();
-    $state.go('app.main')
-  }
-
 })

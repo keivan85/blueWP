@@ -1,7 +1,7 @@
 <ion-view view-title="پست های پسندیده شده" hide-back-button="true">
 
   <ion-nav-buttons side="left">
-      <button class="button button-clear ion-ios-arrow-back white-color" ui-sref="app.main">
+      <button class="button button-clear ion-ios-arrow-back white-color" ui-sref="app.main"> عقب
       </button>
   </ion-nav-buttons>
   
@@ -18,7 +18,8 @@
       pulling-text="به روز رسانی مطالب" on-refresh="doRefresh()">
     </ion-refresher>
 
-    <ion-list  ng-repeat="post in favorite_posts | filter: searchText track by $index">  
+    <ion-list  ng-repeat="post in favorite_posts | filter: searchText track by $index"> 
+     
       <a href="#/app/catPosts/{{post.id}}">
         <div class="item item-image" style="position:relative;" dir="rtl">
             <img ng-src="{{post.better_featured_image.source_url}}" style="filter: blur(3px);">
