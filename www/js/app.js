@@ -21,15 +21,8 @@ angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'dee
         }
     });
 
-    var androidConfiguration = {"senderID": "575496569071"}
-
   });
 
-  $cordovaPush.register(androidConfiguration).then(function(result) {
-    alert(result);
-  }, function(err) {
-    alert(err);
-  })
 })
 
 
