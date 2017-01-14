@@ -1,8 +1,7 @@
 [
-
-    {
-        "image" : "sampledata/products/1.png",
-        "id" : 1
+     {
+        "image" : "sampledata/products/6.png",
+        "id" : 34
     },
     {
         "image" : "sampledata/products/3.png",
@@ -17,8 +16,7 @@
         "id" : 41
     },
     {
-        "image" : "sampledata/products/6.png",
-        "id" : 34
+        "image" : "sampledata/products/1.png",
+        "id" : 1
     }
-
 ]
