@@ -1,8 +1,8 @@
 
 
-angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'deepBlue.services', 'ngStorage'])
+angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'deepBlue.services', 'ngStorage', 'ngCordova'])
 
-.run(function($ionicPlatform, $rootScope, $timeout, $state) {
+.run(function($ionicPlatform, $rootScope, $timeout, $state, $cordovaPush) {
   $ionicPlatform.ready(function() {
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -21,7 +21,15 @@ angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'dee
         }
     });
 
+    var androidConfiguration = {"senderID": "575496569071"}
+
   });
+
+  $cordovaPush.register(androidConfiguration).then(function(result) {
+    alert(result);
+  }, function(err) {
+    alert(err);
+  })
 })
 
 
