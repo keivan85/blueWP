@@ -4,12 +4,6 @@ angular.module('deepBlue.controllers', [])
 //top view controller
 .controller('AppCtrl', function($scope, $rootScope, $state) {
 
-  
-
-
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-    alert("result:" + JSON.stringify(notification));
-  })
 
   $rootScope.user = {
     avatar : 'sampledata/images/avatar.png'
