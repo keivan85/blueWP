@@ -72,11 +72,12 @@ angular.module('deepBlue.controllers', [])
   $http, 
   $stateParams, 
   $sce, 
-  $localStorage) {
+  $localStorage,
+  $cordovaSocialSharing) {
     $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId).then(
       function(returnedData){
         $scope.postDetails = returnedData.data;
-        $scope.post_title = $sce.trustAsHtml($scope.postDetails.title.rendered);
+        $scope.post_title = $scope.postDetails.title.rendered;
         $scope.post_content = $sce.trustAsHtml($scope.postDetails.content.rendered);
         $scope.post_image = $scope.postDetails.better_featured_image.source_url;
 
@@ -84,9 +85,12 @@ angular.module('deepBlue.controllers', [])
         console.log(err);
       })
 
-    $scope.Share = function() {
-      window.plugins.socialsharing.share($scope.post_title, $scope.post_image);
-    }
+   $scope.share = function(title, message, site) {
+    console.log(message);
+    console.log($cordovaSocialSharing.share());
+
+    $cordovaSocialSharing.share(title, message, site);
+  };
 
 })
 
@@ -320,9 +324,7 @@ angular.module('deepBlue.controllers', [])
     }
   }
 
-  $scope.share = function() {
-    $cordovaSocialSharing.share("This is test", "this is title", null, "http://mobiproj.com");
-  };
+
 
   $scope.toggleFavorite = function(post){
     post.isFavorite = !post.isFavorite;
