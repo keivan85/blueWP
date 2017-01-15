@@ -276,7 +276,8 @@ angular.module('deepBlue.controllers', [])
   $http, 
   $localStorage, 
   $sce, 
-  ionicToast) {
+  ionicToast,
+  $cordovaSocialSharing) {
 
   $scope.doRefresh = function(){
 
@@ -319,10 +320,8 @@ angular.module('deepBlue.controllers', [])
     }
   }
 
-  $scope.share = function(t, msg) {
-    if(t == 't') {
-        window.plugins.socialsharing.shareViaTwitter(msg);
-    }
+  $scope.share = function() {
+    $cordovaSocialSharing.share("This is test", "this is title", null, "http://mobiproj.com");
   };
 
   $scope.toggleFavorite = function(post){
