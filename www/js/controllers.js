@@ -319,7 +319,11 @@ angular.module('deepBlue.controllers', [])
     }
   }
 
-  
+  $scope.share = function(t, msg) {
+    if(t == 't') {
+        window.plugins.socialsharing.shareViaTwitter(msg);
+    }
+  };
 
   $scope.toggleFavorite = function(post){
     post.isFavorite = !post.isFavorite;
