@@ -85,11 +85,9 @@ angular.module('deepBlue.controllers', [])
         console.log(err);
       })
 
-   $scope.share = function(title, message, site) {
-    console.log(message);
-    console.log($cordovaSocialSharing.share());
-
-    $cordovaSocialSharing.share(title, message, site);
+   $scope.share = function(title) {
+    console.log(title);
+    $cordovaSocialSharing.share(title);
   };
 
 })
