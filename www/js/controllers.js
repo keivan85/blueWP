@@ -228,7 +228,7 @@ angular.module('deepBlue.controllers', [])
   $scope.Favorites = $localStorage.Favorites;
   if(!$scope.Favorites) {
     $scope.Favorites = [];
-    console.log($scope.Favorites);
+    //console.log($scope.Favorites);
   }
   $scope.toggleFavorite = function(post) {
     //console.log(post);
