@@ -77,7 +77,7 @@ angular.module('deepBlue.controllers', [])
     $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId).then(
       function(returnedData){
         $scope.postDetails = returnedData.data;
-        $scope.post_title = $scope.postDetails.title.rendered;
+        $scope.post_title = $sce.trustAsHtml($scope.postDetails.title.rendered);
         $scope.post_content = $sce.trustAsHtml($scope.postDetails.content.rendered);
         $scope.post_image = $scope.postDetails.better_featured_image.source_url;
 

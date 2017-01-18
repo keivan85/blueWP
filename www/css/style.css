@@ -11,17 +11,25 @@
     font-style: normal;
 }
 
-.iocn-fw-share:before {
+.icon-fw-share:before {
 	font-family: "fontawesome";
 	content: "\f1e0"
 }
-.iocn-fw-home:before {
+.icon-fw-home:before {
 	font-family: "fontawesome";
 	content: "\f015"
 }
-.iocn-fw-news:before {
+.icon-fw-news:before {
 	font-family: "fontawesome";
 	content: "\f1ea"
+}
+.icon-fw-share:before {
+  font-family: "fontawesome";
+  content: "\f1e0"
+}
+.icon-fw-instagram:before {
+  font-family: "fontawesome";
+  content: "\f16d"
 }
 .side-item {
   position: relative;

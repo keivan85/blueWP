@@ -7,8 +7,8 @@
   <ion-content>
       <div class="item-image" style="position:relative;" dir="rtl">
         <img ng-src="{{post_image}}" style="filter: blur(3px);">
-          <p class="item-content item-text-wrap text-right p-text-decoration">{{post_title}}</p>
-          <button class="item-font button icon ion-share button-clear text-right" style="color:#0a1612;" ng-click="share(post_title + ' رو خوندم، خیلی دوستش داشتم،تو هم از اپلیکیشن شیکشو بخونش، از کافه بازار دانلودش کن')" dir="rtl"> باز نشر</button>
+          <p class="item-content item-text-wrap text-right p-text-decoration" ng-bind-html="post_title"></p>
+          <button class="item-font button icon icon-fw-share button-clear" style="color:#0a1612; font-size: 16px !important;" ng-click="share(post_title + ' رو خوندم، خیلی دوستش داشتم،تو هم از اپلیکیشن شیکشو بخونش، از کافه بازار دانلودش کن')" dir="rtl"> باز نشر</button>
       </div>
         
       <div class="item" dir="rtl">
