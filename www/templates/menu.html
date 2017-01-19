@@ -8,7 +8,7 @@
 <ion-side-menus enable-menu-with-back-views="true">
   
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-deepblue">
+    <ion-nav-bar class="bar-deepblue" align-title="center">
       <!-- #TIP: <ion-nav-back-button> is commented out in this example,
         uncomment if you need a back button in some views.
       -->
@@ -17,7 +17,8 @@
       </ion-nav-back-button>
       -->
       <ion-nav-buttons side="right" >
-        <button class="white-color button button-icon button-clear ion-navicon" menu-toggle="right">
+        <button class="white-color button button-icon button-clear" menu-toggle="right"
+        ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-ios-arrow-forward' : 'ion-navicon'">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
