@@ -2,14 +2,13 @@
 angular.module('deepBlue.controllers', [])
 
 //top view controller
-.controller('AppCtrl', function($scope, $rootScope, $state) {
+.controller('AppCtrl', function($scope, $rootScope, $state, $ionicSideMenuDelegate) {
 
+  $scope.$ionicSideMenuDelegate = $ionicSideMenuDelegate;
 
   $rootScope.user = {
     avatar : 'sampledata/images/avatar.png'
-  };
-
-
+  };  
 
   $scope.login = function(){
     $rootScope.user = {
@@ -31,7 +30,7 @@ angular.module('deepBlue.controllers', [])
   BackendService, 
   $http, 
   $sce,
-  ionicToast ) {
+  ionicToast) {
   
 
   $scope.siteCategories = [];
