@@ -54,7 +54,10 @@
     font-family: 'Source Sans Pro', sans-serif !important;
     font-weight: 300;
 }
-
+.title-logo {
+  width: 140px;
+  height: 44px;
+}
 .product-price{
   background-color:rgba(0,0,0,.5) !important; 
   z-index:1000; position:relative; margin-top:-140px; float:right; margin-right:20px;

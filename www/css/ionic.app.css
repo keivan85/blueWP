@@ -62,6 +62,10 @@
   font-family: "fontawesome";
   content: "\f16d"
 }
+.title-logo {
+  width: 140px;
+  height: 44px;
+}
 .a-link-decoration {
   text-decoration: none;
   color: white;
