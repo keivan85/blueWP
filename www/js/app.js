@@ -51,7 +51,6 @@ angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'dee
 
   .state('app.main', {
     url: '/main',
-    cache : false,
     views: {
       'menuContent': {
         templateUrl: 'templates/main.html',

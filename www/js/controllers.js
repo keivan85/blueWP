@@ -72,7 +72,9 @@ angular.module('deepBlue.controllers', [])
   $stateParams, 
   $sce, 
   $localStorage,
-  $cordovaSocialSharing) {
+  $cordovaSocialSharing,
+  $ionicConfigProvider) {
+    $ionicConfigProvider.scrolling.jsScrolling(false);
     $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId).then(
       function(returnedData){
         $scope.postDetails = returnedData.data;
@@ -101,8 +103,10 @@ angular.module('deepBlue.controllers', [])
   $ionicListDelegate, 
   $ionicScrollDelegate, 
   $localStorage, 
-  ionicToast) {
-    
+  ionicToast,
+  $ionicConfigProvider) {
+  
+  $ionicConfigProvider.scrolling.jsScrolling(false);
   $scope.doRefresh = function() {
     $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?categories=" + $stateParams.catId).then(
       function(returnedData){
