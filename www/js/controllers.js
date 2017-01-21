@@ -2,7 +2,7 @@
 angular.module('deepBlue.controllers', [])
 
 //top view controller
-.controller('AppCtrl', function($scope, $rootScope, $state, $ionicSideMenuDelegate) {
+.controller('AppCtrl', function($scope, $rootScope, $state, $ionicSideMenuDelegate, $localStorage) {
 
   $scope.$ionicSideMenuDelegate = $ionicSideMenuDelegate;
 
@@ -102,8 +102,7 @@ angular.module('deepBlue.controllers', [])
   $ionicScrollDelegate, 
   $localStorage, 
   ionicToast) {
-    
-  $scope.doRefresh = function() {
+    $scope.doRefresh = function() {
     $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/posts?categories=" + $stateParams.catId).then(
       function(returnedData){
         $scope.category_posts = returnedData.data;
@@ -285,7 +284,7 @@ angular.module('deepBlue.controllers', [])
     $scope.Favorites = $localStorage.Favorites;
     $scope.favorite_posts = [];
     //console.log($scope.favorite_posts);
-    if($scope.Favorites.length > 0) {
+    if($scope.Favorites && $scope.Favorites.length > 0) {
       $scope.Favorites.forEach(function(element, index, array){
         $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/'+element).success(
           function(data){

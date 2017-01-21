@@ -4,8 +4,8 @@
       <button class="button button-clear ion-ios-arrow-back white-color" ui-sref="app.catPosts"> عقب
       </button>
   </ion-nav-buttons>
-  <ion-content>
-      <div class="item-image" style="position:relative;" dir="rtl">
+  <ion-content overflow-scroll=”true”>
+      <div class="item-image" style="position:relative;" dir="rtl" ng-cloak>
         <img ng-src="{{post_image}}" style="filter: blur(3px);">
           <p class="item-content item-text-wrap text-right p-text-decoration" ng-bind-html="post_title"></p>
           <button class="item-font button icon icon-fw-share button-clear" style="color:#0a1612; font-size: 16px !important;" 
@@ -13,7 +13,7 @@
       </div>
         
       <div class="item" dir="rtl">
-        <p class="text-right item-text-wrap" ng-bind-html="post_content"></p>
+        <p class="text-right item-text-wrap" style="color:#0e0d0d !important;" ng-bind-html="post_content"></p>
       </div>
 
   
