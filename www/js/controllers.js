@@ -40,7 +40,7 @@ angular.module('deepBlue.controllers', [])
       .success(function(newItems) {
         $scope.products = newItems;
        // console.log($scope.products);
-        $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/categories/").then(
+        $http.get("http://allfashion.mobiproj.com/wp-json/wp/v2/categories/", {cache: true}).then(
         function(returnedData){
           $scope.siteCategories = returnedData.data;
           //console.log($scope.siteCategories);
@@ -73,7 +73,7 @@ angular.module('deepBlue.controllers', [])
   $sce, 
   $localStorage,
   $cordovaSocialSharing) {
-    $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId).then(
+    $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/' + $stateParams.postId, {cache: true}).then(
       function(returnedData){
         $scope.postDetails = returnedData.data;
         $scope.post_title = $sce.trustAsHtml($scope.postDetails.title.rendered);

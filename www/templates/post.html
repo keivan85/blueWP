@@ -12,9 +12,11 @@
           ng-click="share(post_title +' ' + ' رو خوندم، خیلی دوستش داشتم،تو هم از اپلیکیشن شیکشو بخونش، از کافه بازار دانلودش کن')" dir="rtl"> باز نشر</button>
       </div>
         
-      <div class="item" dir="rtl">
-        <p class="text-right item-text-wrap" style="color:#0e0d0d !important;" ng-bind-html="post_content"></p>
-      </div>
+      <ion-card class="item" dir="rtl">
+        <ion-list>
+          <p class="text-right item-text-wrap" style="color:#0e0d0d !important;" ng-bind-html="post_content"></p>
+        </ion-list>
+      </ion-card>
 
   
   </ion-content>
