@@ -2,7 +2,7 @@
 
 angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'deepBlue.services', 'ngStorage', 'ngCordova'])
 
-.run(function($ionicPlatform, $rootScope, $timeout, $state, $cordovaPush) {
+.run(function($ionicPlatform, $rootScope, $timeout, $state) {
   $ionicPlatform.ready(function() {
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
