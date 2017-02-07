@@ -281,9 +281,9 @@ angular.module('deepBlue.controllers', [])
 
   $scope.doRefresh = function(){
 
-    $scope.Favorites = $localStorage.Favorites;
+    $scope.Favorites = $localStorage.Favorites.reverse();
     $scope.favorite_posts = [];
-    //console.log($scope.favorite_posts);
+    //console.log($scope.Favorites);
     if($scope.Favorites && $scope.Favorites.length > 0) {
       $scope.Favorites.forEach(function(element, index, array){
         $http.get('http://allfashion.mobiproj.com/wp-json/wp/v2/posts/'+element).success(
@@ -316,7 +316,7 @@ angular.module('deepBlue.controllers', [])
       })
     } else {
       $scope.$broadcast('scroll.refreshComplete');
-      ionicToast.show('شما هنوز مطلبی را به لیست مطالب پسندیده شده اضافه نکردید', 'middle', false, '5000');
+      ionicToast.show('شما هنوز مطلبی را به لیست مطالب پسندیده شده اضافه نکردید', 'middle', false, '3000');
     }
   }
 
