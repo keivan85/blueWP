@@ -9,11 +9,11 @@
         <img ng-src="{{post_image}}" style="filter: blur(3px);">
           <p class="item-content item-text-wrap text-right p-text-decoration" ng-bind-html="post_title"></p>
           <button class="item-font button icon icon-fw-share button-clear" style="color:#0a1612; font-size: 16px !important;" 
-          ng-click="share(post_title +' ' + ' رو خوندم، خیلی دوستش داشتم،تو هم از اپلیکیشن شیکشو بخونش، از کافه بازار دانلودش کن')" dir="rtl"> باز نشر</button>
+          ng-click="share(post_title + ' ... ' + 'رو از اپلیکیشن شیکشو خوندم، خیلی دوستش داشتم،تو هم شیکشو رو از کافه بازار دانلود کن و بخونش' + 'http://cafebazaar.ir/')" dir="rtl"> باز نشر</button>
       </div>
         
       <ion-card class="item" dir="rtl">
-        <ion-list>
+        <ion-list dir="rtl">
           <p class="text-right item-text-wrap" style="color:#0e0d0d !important;" ng-bind-html="post_content"></p>
         </ion-list>
       </ion-card>
