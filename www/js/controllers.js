@@ -79,7 +79,6 @@ angular.module('deepBlue.controllers', [])
         $scope.post_title = $sce.trustAsHtml($scope.postDetails.title.rendered);
         $scope.post_content = $sce.trustAsHtml($scope.postDetails.content.rendered);
         $scope.post_image = $scope.postDetails.better_featured_image.source_url;
-
       }, function(err){
         console.log(err);
       })
@@ -281,7 +280,7 @@ angular.module('deepBlue.controllers', [])
 
   $scope.doRefresh = function(){
 
-    $scope.Favorites = $localStorage.Favorites.reverse();
+    $scope.Favorites = $localStorage.Favorites;
     $scope.favorite_posts = [];
     //console.log($scope.Favorites);
     if($scope.Favorites && $scope.Favorites.length > 0) {
