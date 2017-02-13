@@ -2,21 +2,23 @@
 angular.module('deepBlue.controllers', [])
 
 //top view controller
-.controller('AppCtrl', function($scope, $rootScope, $state, $ionicSideMenuDelegate, $localStorage) {
+
+.controller('AppCtrl', function($scope, $rootScope, $state, $ionicSideMenuDelegate, $localStorage, $timeout) {
 
   $scope.$ionicSideMenuDelegate = $ionicSideMenuDelegate;
+  $ionicSideMenuDelegate.canDragContent(false);
 
   $rootScope.user = {
     avatar : 'sampledata/images/avatar.png'
   };  
 
-  $scope.login = function(){
+  $timeout(function(){
     $rootScope.user = {
       name : "Shiksho",
       avatar : 'sampledata/images/avatar.png'
     };
     $state.go('app.main');
-  };
+  }, 2000);
 
   $scope.logout = function(){
   ionic.Platform.exitApp();
@@ -63,6 +65,7 @@ angular.module('deepBlue.controllers', [])
   $scope.doRefresh();
 
 })
+
 
 
 // post controller.
@@ -270,6 +273,8 @@ angular.module('deepBlue.controllers', [])
 
 })
 
+
+// controller for "app.favorites" view
 .controller('favCtrl', function(
   $scope, 
   $http, 
@@ -344,3 +349,4 @@ angular.module('deepBlue.controllers', [])
 
   $scope.doRefresh();
 })
+

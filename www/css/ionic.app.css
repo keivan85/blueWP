@@ -62,6 +62,10 @@
   font-family: "fontawesome";
   content: "\f16d"
 }
+.icon-fw-about:before {
+  font-family: "fontawesome";
+  content: "\f0c0"
+}
 .title-logo {
   width: 140px;
   height: 44px;

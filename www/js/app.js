@@ -48,7 +48,6 @@ angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'dee
     }
   })
 
-
   .state('app.main', {
     url: '/main',
     views: {
@@ -100,6 +99,7 @@ angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'dee
       }
     }
   })
+
 
 
 
