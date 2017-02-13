@@ -1,21 +1,8 @@
-<!-- 
-  #IMPLEMENTATION-DETAIL:
-  this view is our top one and uses ion-side-menus component.
-  In case of views where we want to hide the menu, we'll hide the 
-  navigation bar provided here.
-  #TIP: enable-menu-with-back-views="true" is set to true to show the menu opening control in all views by default.
--->
+
 <ion-side-menus enable-menu-with-back-views="true">
   
   <ion-side-menu-content>
     <ion-nav-bar class="bar-deepblue" align-title="center">
-      <!-- #TIP: <ion-nav-back-button> is commented out in this example,
-        uncomment if you need a back button in some views.
-      -->
-      <!--
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-      -->
       <ion-nav-buttons side="right" >
         <button class="white-color button button-icon button-clear" menu-toggle="right"
         ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-ios-arrow-forward' : 'ion-navicon'">
@@ -28,20 +15,13 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="right">
-    <!--
-      #IMPLEMENTATION-DETAIL:
-      we are using our custom bar classes here
-      see scss/themed.scss for implementation.
-    -->
+
     <ion-header-bar class="bar-deepblue-reverse bar-deepblue-borderbottom">
     </ion-header-bar>
   
     <ion-content dir="rtl">
       <ion-list>
-        <!-- #TIP: 
-          Menu items are wrapped In the following <ion-list>. 
-          Each one has attribute "menu-close" set in order to automatically close side menu on click 
-        -->
+
         <div ng-show="user.avatar" menu-close href="#/app/account" class="side-item item-menu-avatar text-center">
           <img ng-src="{{user.avatar}}" class="avatar-menu">
         </div>
