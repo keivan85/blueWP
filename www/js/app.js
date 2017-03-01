@@ -60,7 +60,7 @@ angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'dee
 
   .state('app.catContent', {
     url: '/catContent/:catId',
-    cache : false,
+    cache : true,
     views: {
       'menuContent': {
         templateUrl: 'templates/catContent.html',
@@ -71,7 +71,7 @@ angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'dee
 
   .state('app.catPosts', {
     url: '/catPosts',
-    cache : false,
+    cache : true,
     views: {
       'menuContent': {
         templateUrl: 'templates/catPosts.html',
@@ -91,7 +91,7 @@ angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'dee
   })
   .state('app.post', {
     url: '/catPosts/:postId',
-    cache : false,
+    cache : true,
     views: {
       'menuContent': {
         templateUrl: 'templates/post.html',
