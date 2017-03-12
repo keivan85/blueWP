@@ -21,6 +21,14 @@ angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'dee
         }
     });
 
+     if (typeof analytics !== 'undefined'){
+          analytics.startTrackerWithId('UA-93043980-1');
+          analytics.trackView('testappmain');
+          console.log("starting analytics");
+        } else {
+          console.log("Google Analytics plugin could not be loaded.");
+        }
+
   });
 
 })
@@ -44,6 +52,15 @@ angular.module('deepBlue', ['ionic', 'ionic-toast', 'deepBlue.controllers', 'dee
     views: {
       'menuContent': {
         templateUrl: 'templates/start.html'
+      }
+    }
+  })
+
+    .state('app.account', {
+    url: '/account',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/account.html'
       }
     }
   })

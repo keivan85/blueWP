@@ -62,10 +62,14 @@ angular.module('deepBlue.controllers', [])
       });
   };
 
+
+  $scope.initEvent = function() {
+        if(typeof analytics !== undefined) { analytics.trackEvent("Category", "Action", "Label", 25); }
+    }
+
   $scope.doRefresh();
 
 })
-
 
 
 // post controller.
@@ -90,6 +94,12 @@ angular.module('deepBlue.controllers', [])
     //console.log(title);
     $cordovaSocialSharing.share(title);
   };
+
+
+
+ $scope.initEvent = function() {
+        if(typeof analytics !== undefined) { analytics.trackEvent("Category", "Action", "Label", 25); }
+    }
 
 })
 
@@ -183,6 +193,10 @@ angular.module('deepBlue.controllers', [])
   $scope.searchTextChanged = function() {
     $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop(true);
   };
+
+ $scope.initEvent = function() {
+        if(typeof analytics !== undefined) { analytics.trackEvent("Category", "Action", "Label", 25); }
+    }
 })
 
 // controller for "app.catPosts" view
@@ -271,6 +285,10 @@ angular.module('deepBlue.controllers', [])
     $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop(true);
   };
 
+ $scope.initEvent = function() {
+        if(typeof analytics !== undefined) { analytics.trackEvent("Category", "Action", "Label", 25); }
+    }
+
 })
 
 
@@ -346,6 +364,10 @@ angular.module('deepBlue.controllers', [])
 
     $localStorage.Favorites = $scope.Favorites;
   }
+
+ $scope.initEvent = function() {
+        if(typeof analytics !== undefined) { analytics.trackEvent("Category", "Action", "Label", 25); }
+    }
 
   $scope.doRefresh();
 })
